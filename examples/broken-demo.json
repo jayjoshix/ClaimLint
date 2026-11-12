@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "1.0",
+  "id": "northstar-cloud-q4-2026",
+  "title": "Northstar Q4 Cloud Net Sales > $31.0bn",
+  "description": "Synthetic example: settle using Northstar's Q4 cloud net sales reported by the company or its fictional filing registry. Intentionally leaves exceptional settlement paths unspecified.",
+  "reference": {
+    "entityId": "northstar",
+    "entityName": "Northstar Systems (fictional)",
+    "metricId": "cloud-net-sales",
+    "metricName": "Cloud Net Sales",
+    "metricDefinition": "Net external cloud segment revenue for the specified fiscal quarter, excluding intersegment sales, under fictional accounting definition v1.",
+    "definitionId": "cloud-net-sales-v1",
+    "unit": "USD_billion",
+    "reportingPeriod": {
+      "id": "FY2026-Q4",
+      "start": "2026-10-01T00:00:00Z",
+      "end": "2027-01-01T00:00:00Z",
+      "calendar": "northstar-fiscal-2026-v1"
+    }
+  },
+  "condition": { "comparator": ">", "strike": "31" },
+  "sources": [
+    {
+      "id": "issuer",
+      "name": "Fictional issuer earnings release",
+      "priority": 1
+    },
+    {
+      "id": "registry",
+      "name": "Fictional public filing registry",
+      "priority": 2
+    },
+    {
+      "id": "archive",
+      "name": "Fictional designated issuer archive",
+      "priority": 3,
+      "replaces": "issuer"
+    }
+  ],
+  "timing": {
+    "observationStart": "2026-10-01T00:00:00Z",
+    "observationEnd": "2027-01-01T00:00:00Z",
+    "publicationDeadline": "2027-02-01T00:00:00Z",
+    "determinationAt": "2027-02-03T00:00:00Z",
+    "settlementAt": "2027-02-04T00:00:00Z"
+  },
+  "policies": {},
+  "payout": { "currency": "USD", "yes": "1", "no": "0" },
+  "provenance": {
+    "kind": "synthetic",
+    "publisher": "ClaimLint contributors",
+    "documentTitle": "Synthetic Northstar reported-number claim",
+    "normalizedFields": ["all fields are authored for this example"],
+    "interpretation": "No real company, exchange contract, source document or market rule is represented. Empty policies intentionally preserve omissions; this is schema-valid. Decimal 31 denotes exactly 31 billion USD. Observation period is half-open [start, end)."
+  }
+}

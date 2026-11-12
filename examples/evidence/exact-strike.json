@@ -1,0 +1,24 @@
+{
+  "observations": [
+    {
+      "id": "release-v1",
+      "sourceId": "issuer",
+      "entityId": "northstar",
+      "metricId": "cloud-net-sales",
+      "definitionId": "cloud-net-sales-v1",
+      "value": "31000",
+      "unit": "USD_million",
+      "reportingPeriod": {
+        "id": "FY2026-Q4",
+        "start": "2026-10-01T00:00:00Z",
+        "end": "2027-01-01T00:00:00Z",
+        "calendar": "northstar-fiscal-2026-v1"
+      },
+      "publishedAt": "2027-01-28T12:00:00Z",
+      "availableAt": "2027-01-28T12:01:00Z",
+      "status": "final",
+      "revisionId": "v1"
+    }
+  ],
+  "events": []
+}

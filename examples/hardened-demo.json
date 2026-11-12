@@ -1,0 +1,73 @@
+{
+  "schemaVersion": "1.0",
+  "id": "northstar-cloud-q4-2026",
+  "title": "Northstar Q4 Cloud Net Sales > $31.0bn",
+  "description": "Synthetic claim with explicit exceptional paths. Review routes identify defined procedures; ClaimLint does not execute them.",
+  "reference": {
+    "entityId": "northstar",
+    "entityName": "Northstar Systems (fictional)",
+    "metricId": "cloud-net-sales",
+    "metricName": "Cloud Net Sales",
+    "metricDefinition": "Net external cloud segment revenue for the specified fiscal quarter, excluding intersegment sales, under fictional accounting definition v1.",
+    "definitionId": "cloud-net-sales-v1",
+    "unit": "USD_billion",
+    "reportingPeriod": {
+      "id": "FY2026-Q4",
+      "start": "2026-10-01T00:00:00Z",
+      "end": "2027-01-01T00:00:00Z",
+      "calendar": "northstar-fiscal-2026-v1"
+    }
+  },
+  "condition": { "comparator": ">", "strike": "31" },
+  "sources": [
+    {
+      "id": "issuer",
+      "name": "Fictional issuer earnings release",
+      "priority": 1
+    },
+    {
+      "id": "registry",
+      "name": "Fictional public filing registry",
+      "priority": 2
+    },
+    {
+      "id": "archive",
+      "name": "Fictional designated issuer archive",
+      "priority": 3,
+      "replaces": "issuer"
+    }
+  ],
+  "timing": {
+    "observationStart": "2026-10-01T00:00:00Z",
+    "observationEnd": "2027-01-01T00:00:00Z",
+    "publicationDeadline": "2027-02-01T00:00:00Z",
+    "determinationAt": "2027-02-03T00:00:00Z",
+    "settlementAt": "2027-02-04T00:00:00Z"
+  },
+  "policies": {
+    "missingData": "review",
+    "latePublication": "acceptUntilDetermination",
+    "sourceConflict": "precedence",
+    "corrections": "freezeAtDetermination",
+    "sourceReplacement": "fallback",
+    "metricDiscontinuation": "review",
+    "definitionDrift": "review",
+    "calendarChange": "review",
+    "corporateAction": "review",
+    "provisional": "finalOnly",
+    "units": "convertUSD",
+    "rounding": { "decimalPlaces": 1, "mode": "halfEven" },
+    "dispute": {
+      "processId": "synthetic-review-v1",
+      "description": "Synthetic procedure: refer the frozen evidence package to two independent reviewers; require unanimous written determination or leave settlement unresolved. No review decision is inferred by ClaimLint."
+    }
+  },
+  "payout": { "currency": "USD", "yes": "1", "no": "0" },
+  "provenance": {
+    "kind": "synthetic",
+    "publisher": "ClaimLint contributors",
+    "documentTitle": "Synthetic Northstar reported-number claim",
+    "normalizedFields": ["all fields are authored for this example"],
+    "interpretation": "Same economic reference, condition, sources, dates and payout as broken-demo.json. Policies explicitly add settlement behavior, including one decimal place half-even rounding of normalized observed billions (strike unchanged), known-at-determination corrections, and review contingencies. Review completeness is outside the executable model."
+  }
+}
