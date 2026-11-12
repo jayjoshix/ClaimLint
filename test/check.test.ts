@@ -6,6 +6,11 @@ import { checkClaim, PROPERTY_IDS } from '../src/check.js';
 import { SCENARIOS } from '../src/scenarios.js';
 import { validateClaim } from '../src/validation.js';
 import { EvidenceSetSchema, type ClaimSpecV1 } from '../src/model.js';
+import {
+  referenceCompare,
+  referenceRound,
+  referenceShift,
+} from '../src/reference.js';
 
 function fixture(name = 'hardened'): ClaimSpecV1 {
   const input: unknown = JSON.parse(
@@ -282,4 +287,78 @@ test('decimal-domain boundaries never manufacture invalid evidence or false comp
         'SKIPPED',
       );
   }
+});
+
+test('rounded strike quantum cannot conceal an omitted source-conflict rule', () => {
+  const spec = fixture();
+  spec.condition.strike = '31.01';
+  delete spec.policies.sourceConflict;
+  const report = checkClaim(spec, { runs: 10, property: 'TOTALITY' });
+  assert.equal(report.verdict, 'COUNTEREXAMPLE_FOUND');
+  assert.ok(report.findings.some((finding) => finding.code === 'CL005'));
+  assert.equal(
+    report.namedScenarios.find((scenario) => scenario.id === 'source-conflict')
+      ?.resolution?.status,
+    'UNDEFINED',
+  );
+  assert.equal(report.generated.checks[0]?.status, 'FAIL');
+});
+
+test('undefined library input returns invalid-spec report without hashing failure', () => {
+  for (const input of [undefined, () => undefined, 31n]) {
+    const report = checkClaim(input, { runs: 1 });
+    assert.equal(report.verdict, 'INVALID_SPEC');
+    assert.equal(report.generated.executedRuns, 0);
+    assert.ok(report.validation.issues.length > 0);
+  }
+});
+
+test('unrepresentable future instants are skipped rather than fabricated or crashed', () => {
+  const spec = fixture();
+  spec.timing.settlementAt = '+275760-09-13T00:00:00Z';
+  assert.equal(validateClaim(spec).valid, true);
+  const report = checkClaim(spec, { runs: 2 });
+  assert.equal(report.verdict, 'NO_COUNTEREXAMPLE_FOUND');
+  for (const id of [
+    'restatement-after-settlement',
+    'future-evidence',
+    'late-retrieval',
+  ])
+    assert.equal(
+      report.namedScenarios.find((scenario) => scenario.id === id)?.status,
+      'SKIPPED',
+      id,
+    );
+  for (const id of ['FINALITY', 'TEMPORAL_INTEGRITY']) {
+    const checked = report.generated.checks.find(
+      (property) => property.propertyId === id,
+    );
+    assert.equal(checked?.status, 'SKIPPED');
+    assert.equal(checked.runs, 0);
+  }
+});
+
+test('independent digit oracle handles signed, scaled, and carry boundary vectors', () => {
+  for (const [a, b, expected] of [
+    ['-100.1', '-100.01', -1],
+    ['0.001', '0.01', -1],
+    ['9007199254740993.000000000000000001', '9007199254740993', 1],
+    ['31', '31', 0],
+    ['-0.01', '0', -1],
+    ['100', '99.999', 1],
+  ] as const)
+    assert.equal(referenceCompare(a, b), expected);
+  for (const [value, places, mode, expected] of [
+    ['9.99', 1, 'halfEven', '10'],
+    ['-9.99', 1, 'halfEven', '-10'],
+    ['-0.005', 2, 'halfEven', '0'],
+    ['-0.005', 2, 'halfUp', '-0.01'],
+    ['31.05', 1, 'halfEven', '31'],
+    ['31.15', 1, 'halfEven', '31.2'],
+    ['31.0501', 1, 'halfEven', '31.1'],
+    ['-31.99', 0, 'truncate', '-31'],
+  ] as const)
+    assert.equal(referenceRound(value, places, mode), expected);
+  assert.equal(referenceShift('31000', -3), '31');
+  assert.equal(referenceShift('-0.001', 3), '-1');
 });

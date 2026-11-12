@@ -197,7 +197,7 @@ export interface ResolutionResult {
   evidenceUsed: string[];
   trace: TraceStep[];
 }
-export const ENGINE_VERSION = '0.1.0';
+export const ENGINE_VERSION = '0.1.1';
 
 export type PropertyId =
   | 'DETERMINISM'

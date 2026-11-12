@@ -8,13 +8,12 @@ import type {
   Unit,
   WorldEvent,
 } from './model.js';
+import { boundaryValue, isDecimal, shiftDecimal } from './decimal.js';
 import {
-  boundaryValue,
-  compareDecimal,
-  isDecimal,
-  roundDecimal,
-  shiftDecimal,
-} from './decimal.js';
+  referenceCompare,
+  referenceRound,
+  referenceShift,
+} from './reference.js';
 import { canonicalJson } from './canonical.js';
 import { addSeconds, compareTime } from './time.js';
 
@@ -111,9 +110,9 @@ export function expectedBoundary(
 ): 'YES' | 'NO' {
   const rounding = spec.policies.rounding;
   const normalized = rounding
-    ? roundDecimal(value, rounding.decimalPlaces, rounding.mode)
+    ? referenceRound(value, rounding.decimalPlaces, rounding.mode)
     : value;
-  const relation = compareDecimal(normalized, spec.condition.strike);
+  const relation = referenceCompare(normalized, spec.condition.strike);
   const truth = {
     '>': relation > 0,
     '>=': relation >= 0,
@@ -134,11 +133,16 @@ export function admissibleBoundaryValue(
   return isDecimal(value) ? value : strike;
 }
 
-function contrastingValue(spec: ClaimSpecV1): string {
-  const above = admissibleBoundaryValue(spec.condition.strike, 1);
-  return above !== spec.condition.strike
-    ? above
-    : admissibleBoundaryValue(spec.condition.strike, -1);
+export function contrastingValue(
+  spec: ClaimSpecV1,
+  value = spec.condition.strike,
+): string {
+  const rounding = spec.policies.rounding;
+  const baseline = rounding
+    ? referenceRound(value, rounding.decimalPlaces, rounding.mode)
+    : value;
+  const above = admissibleBoundaryValue(baseline, 1);
+  return above !== baseline ? above : admissibleBoundaryValue(baseline, -1);
 }
 
 export function fineBoundaryValue(spec: ClaimSpecV1): string | undefined {
@@ -149,6 +153,15 @@ export function fineBoundaryValue(spec: ClaimSpecV1): string | undefined {
   if (!isDecimal(above)) return undefined;
   const value = shiftDecimal(above, -places);
   return isDecimal(value) ? value : undefined;
+}
+
+function successor(value: string): string | undefined {
+  try {
+    return addSeconds(value, 1);
+  } catch (error) {
+    if (error instanceof RangeError) return undefined;
+    throw error;
+  }
 }
 
 const boundary = (offset: -1 | 0 | 1): AdversarialScenario => ({
@@ -211,7 +224,8 @@ export const SCENARIOS: readonly AdversarialScenario[] = [
       'The first correct publication arrives after the publication deadline.',
     property: 'TOTALITY',
     build: (spec) => {
-      const late = addSeconds(spec.timing.publicationDeadline, 1);
+      const late = successor(spec.timing.publicationDeadline);
+      if (late === undefined) return undefined;
       const result = state(spec, [
         observation(spec, { publishedAt: late, availableAt: late }),
       ]);
@@ -294,7 +308,8 @@ export const SCENARIOS: readonly AdversarialScenario[] = [
     property: 'FINALITY',
     build: (spec) => {
       const initial = state(spec, [observation(spec)]);
-      const later = addSeconds(spec.timing.settlementAt, 1);
+      const later = successor(spec.timing.settlementAt);
+      if (later === undefined) return undefined;
       return {
         ...initial,
         comparison: {
@@ -335,7 +350,10 @@ export const SCENARIOS: readonly AdversarialScenario[] = [
     build: (spec) =>
       state(spec, [
         observation(spec, {
-          definitionId: `${spec.reference.definitionId.slice(0, 100)}-changed`,
+          definitionId:
+            spec.reference.definitionId === 'changed-definition'
+              ? 'another-definition'
+              : 'changed-definition',
         }),
       ]),
   },
@@ -348,7 +366,10 @@ export const SCENARIOS: readonly AdversarialScenario[] = [
         observation(spec, {
           reportingPeriod: {
             ...spec.reference.reportingPeriod,
-            id: 'different-period',
+            id:
+              spec.reference.reportingPeriod.id === 'different-period'
+                ? 'another-period'
+                : 'different-period',
           },
         }),
       ]),
@@ -370,7 +391,10 @@ export const SCENARIOS: readonly AdversarialScenario[] = [
       const power = powers[spec.reference.unit];
       if (power === undefined) return undefined;
       const unit: Unit = spec.reference.unit === 'USD' ? 'USD_million' : 'USD';
-      const value = shiftDecimal(spec.condition.strike, power - powers[unit]!);
+      const value = referenceShift(
+        spec.condition.strike,
+        power - powers[unit]!,
+      );
       if (!isDecimal(value)) return undefined;
       return state(spec, [
         observation(spec, {
@@ -503,7 +527,8 @@ export const SCENARIOS: readonly AdversarialScenario[] = [
     property: 'TEMPORAL_INTEGRITY',
     build: (spec) => {
       const initial = state(spec, [observation(spec)]);
-      const later = addSeconds(spec.timing.settlementAt, 1);
+      const later = successor(spec.timing.settlementAt);
+      if (later === undefined) return undefined;
       return {
         ...initial,
         comparison: {
@@ -533,13 +558,15 @@ export const SCENARIOS: readonly AdversarialScenario[] = [
     property: 'TEMPORAL_INTEGRITY',
     build: (spec) => {
       const initial = state(spec);
+      const later = successor(spec.timing.settlementAt);
+      if (later === undefined) return undefined;
       return {
         ...initial,
         comparison: {
           evidence: {
             observations: [
               observation(spec, {
-                availableAt: addSeconds(spec.timing.settlementAt, 1),
+                availableAt: later,
               }),
             ],
             events: [],

@@ -1,6 +1,5 @@
 import fc from 'fast-check';
 import { canonicalJson, digest } from './canonical.js';
-import { compareDecimal } from './decimal.js';
 import {
   ENGINE_VERSION,
   type ClaimSpecV1,
@@ -15,6 +14,7 @@ import { resolve } from './resolver.js';
 import {
   SCENARIOS,
   admissibleBoundaryValue,
+  contrastingValue,
   decision,
   expectedBoundary,
   observation,
@@ -23,6 +23,7 @@ import {
   worldEvent,
   type ScenarioState,
 } from './scenarios.js';
+import { referenceCompare, referenceShift } from './reference.js';
 import { addSeconds, compareTime } from './time.js';
 import { validateClaim } from './validation.js';
 
@@ -89,29 +90,56 @@ export interface CheckReport {
 }
 
 interface WorldChoice {
+  family: 'mixed' | 'conflict' | 'revision';
   offset: -1 | 0 | 1;
   primary: boolean;
   secondary: boolean;
   disagreement: boolean;
   provisional: boolean;
   revision: boolean;
-  late: boolean;
+  nearDeadline: boolean;
+  deadlineOffset: -1 | 0 | 1;
+  availability: 'publication' | 'determination' | 'afterSettlement';
+  wide: boolean;
+  value: string;
   wrongPeriod: boolean;
+  secondaryWrongPeriod: boolean;
   event: WorldEvent['type'] | 'none';
-  reverse: boolean;
+  secondEvent: WorldEvent['type'] | 'none';
+  orderKeys: number[];
+  futureKind: 'publication' | 'availability' | 'both';
   duplicate: boolean;
 }
 
 /** Valid identity/revision graphs with varied authority, lifecycle, and information availability. */
 const worlds: fc.Arbitrary<WorldChoice> = fc.record({
+  family: fc.constantFrom(
+    'mixed' as const,
+    'conflict' as const,
+    'revision' as const,
+  ),
   offset: fc.constantFrom(-1 as const, 0 as const, 1 as const),
   primary: fc.boolean(),
   secondary: fc.boolean(),
   disagreement: fc.boolean(),
   provisional: fc.boolean(),
   revision: fc.boolean(),
-  late: fc.boolean(),
+  nearDeadline: fc.boolean(),
+  deadlineOffset: fc.constantFrom(-1 as const, 0 as const, 1 as const),
+  availability: fc.constantFrom(
+    'publication' as const,
+    'determination' as const,
+    'afterSettlement' as const,
+  ),
+  wide: fc.boolean(),
+  value: fc
+    .tuple(
+      fc.integer({ min: -100000, max: 100000 }),
+      fc.integer({ min: 0, max: 6 }),
+    )
+    .map(([coefficient, scale]) => referenceShift(String(coefficient), -scale)),
   wrongPeriod: fc.boolean(),
+  secondaryWrongPeriod: fc.boolean(),
   event: fc.constantFrom(
     'none' as const,
     'sourceOutage' as const,
@@ -121,23 +149,91 @@ const worlds: fc.Arbitrary<WorldChoice> = fc.record({
     'calendarChange' as const,
     'corporateAction' as const,
   ),
-  reverse: fc.boolean(),
+  secondEvent: fc.constantFrom(
+    'none' as const,
+    'metricDiscontinuation' as const,
+    'definitionDrift' as const,
+    'calendarChange' as const,
+    'corporateAction' as const,
+  ),
+  orderKeys: fc.array(fc.nat(), { minLength: 8, maxLength: 8 }),
+  futureKind: fc.constantFrom(
+    'publication' as const,
+    'availability' as const,
+    'both' as const,
+  ),
   duplicate: fc.boolean(),
 });
 
+function permute<T>(values: readonly T[], keys: readonly number[]): T[] {
+  return values
+    .map((value, index) => ({
+      value,
+      index,
+      key: keys[index % keys.length] ?? 0,
+    }))
+    .sort((a, b) => a.key - b.key || a.index - b.index)
+    .map((entry) => entry.value);
+}
+
+function shiftedTime(value: string, seconds: number): string | undefined {
+  try {
+    return addSeconds(value, seconds);
+  } catch (error) {
+    if (error instanceof RangeError) return undefined;
+    throw error;
+  }
+}
+
 function materialize(spec: ClaimSpecV1, choice: WorldChoice): ScenarioState {
+  // Preserve important mature preconditions instead of relying on many unrelated
+  // booleans to coincide while review routes mask the state under examination.
+  if (choice.family !== 'mixed')
+    choice = {
+      ...choice,
+      primary: true,
+      secondary: choice.family === 'conflict',
+      disagreement: true,
+      revision: choice.family === 'revision',
+      provisional: false,
+      nearDeadline: false,
+      availability: 'publication',
+      wrongPeriod: false,
+      secondaryWrongPeriod: false,
+      event: 'none',
+      secondEvent: 'none',
+    };
   const observations: EvidenceObservation[] = [];
-  const publishedAt = choice.late
-    ? addSeconds(spec.timing.publicationDeadline, 1)
+  const publishedAt = choice.nearDeadline
+    ? (shiftedTime(spec.timing.publicationDeadline, choice.deadlineOffset) ??
+      spec.timing.publicationDeadline)
     : spec.timing.observationEnd;
+  const firstAvailable =
+    choice.availability === 'publication'
+      ? publishedAt
+      : choice.availability === 'determination'
+        ? spec.timing.determinationAt
+        : (shiftedTime(spec.timing.settlementAt, 1) ??
+          spec.timing.settlementAt);
+  const availableAt =
+    compareTime(firstAvailable, publishedAt) < 0 ? publishedAt : firstAvailable;
   const initial = observation(spec, {
-    value: admissibleBoundaryValue(spec.condition.strike, choice.offset),
+    value: choice.wide
+      ? choice.value
+      : admissibleBoundaryValue(spec.condition.strike, choice.offset),
     publishedAt,
-    availableAt: publishedAt,
+    availableAt,
     status: choice.provisional ? 'provisional' : 'final',
     reportingPeriod: {
       ...spec.reference.reportingPeriod,
-      ...(choice.wrongPeriod ? { id: 'wrong-period' } : {}),
+      ...(choice.wrongPeriod
+        ? {
+            id:
+              spec.reference.reportingPeriod.id === 'wrong-period'
+                ? 'another-period'
+                : 'wrong-period',
+          }
+        : {}),
     },
   });
   if (choice.primary) {
@@ -147,10 +243,7 @@ function materialize(spec: ClaimSpecV1, choice: WorldChoice): ScenarioState {
         ...initial,
         id: 'generated-revision',
         revises: initial.id,
-        value: admissibleBoundaryValue(
-          spec.condition.strike,
-          choice.offset === 1 ? -1 : 1,
-        ),
+        value: contrastingValue(spec, initial.value),
         status: 'final',
       });
   }
@@ -161,14 +254,21 @@ function materialize(spec: ClaimSpecV1, choice: WorldChoice): ScenarioState {
       id: 'generated-secondary',
       sourceId: secondary.id,
       value: choice.disagreement
-        ? admissibleBoundaryValue(
-            spec.condition.strike,
-            choice.offset === 1 ? -1 : 1,
-          )
+        ? contrastingValue(spec, initial.value)
         : initial.value,
+      reportingPeriod: {
+        ...spec.reference.reportingPeriod,
+        ...(choice.secondaryWrongPeriod
+          ? {
+              id: `${spec.reference.reportingPeriod.id === 'wrong-period' ? 'another' : 'wrong'}-period`,
+            }
+          : {}),
+      },
     });
   const events =
     choice.event === 'none' ? [] : [worldEvent(spec, choice.event)];
+  if (choice.secondEvent !== 'none')
+    events.push(worldEvent(spec, choice.secondEvent));
   if (choice.event === 'sourceReplacement') {
     const replacement = spec.sources.find(
       (source) => source.replaces === primarySources(spec)[0]!.id,
@@ -182,8 +282,11 @@ function materialize(spec: ClaimSpecV1, choice: WorldChoice): ScenarioState {
   }
   if (choice.duplicate && observations[0])
     observations.push(structuredClone(observations[0]));
-  if (choice.reverse) observations.reverse();
-  const input = state(spec, observations, events);
+  const input = state(
+    spec,
+    permute(observations, choice.orderKeys),
+    permute(events, [...choice.orderKeys].reverse()),
+  );
   if (compareTime(publishedAt, spec.timing.settlementAt) > 0)
     input.context = { asOf: publishedAt };
   return input;
@@ -198,6 +301,7 @@ interface PropertyProbe {
   results: ResolutionResult[];
   passed: boolean;
   variantSpec?: ClaimSpecV1;
+  applicable?: boolean;
 }
 
 function probe(
@@ -221,9 +325,25 @@ function probe(
   };
   switch (property) {
     case 'DETERMINISM':
-    case 'IDEMPOTENCE':
       return relation(
         structuredClone(input),
+        (a, b) => canonicalJson(a) === canonicalJson(b),
+      );
+    case 'IDEMPOTENCE':
+      return relation(
+        {
+          ...input,
+          evidence: {
+            observations: [
+              ...input.evidence.observations,
+              ...structuredClone(input.evidence.observations),
+            ],
+            events: [
+              ...input.evidence.events,
+              ...structuredClone(input.evidence.events),
+            ],
+          },
+        },
         (a, b) => canonicalJson(a) === canonicalJson(b),
       );
     case 'ORDER_INVARIANCE':
@@ -231,8 +351,11 @@ function probe(
         {
           ...input,
           evidence: {
-            observations: [...input.evidence.observations].reverse(),
-            events: [...input.evidence.events].reverse(),
+            observations: permute(
+              input.evidence.observations,
+              [...choice.orderKeys].reverse(),
+            ),
+            events: permute(input.evidence.events, choice.orderKeys),
           },
         },
         (a, b) => canonicalJson(a) === canonicalJson(b),
@@ -261,16 +384,18 @@ function probe(
           value: admissibleBoundaryValue(spec.condition.strike, choice.offset),
         }),
       ]);
-      const later = addSeconds(spec.timing.settlementAt, 1);
+      const later = shiftedTime(spec.timing.settlementAt, 1);
+      if (later === undefined)
+        return { ...base, passed: true, applicable: false };
       const supplement = observation(spec, {
         id: 'generated-after-settlement',
         revises: 'observation-1',
-        publishedAt: later,
+        publishedAt:
+          choice.futureKind === 'availability'
+            ? spec.timing.publicationDeadline
+            : later,
         availableAt: later,
-        value: admissibleBoundaryValue(
-          spec.condition.strike,
-          choice.offset === 1 ? -1 : 1,
-        ),
+        value: contrastingValue(spec, initial.evidence.observations[0]!.value),
       });
       const subsequent: ScenarioState = {
         evidence: {
@@ -280,15 +405,24 @@ function probe(
         context: { asOf: later },
       };
       const a = run(spec, initial);
+      if (!a.terminal)
+        return {
+          inputs: [initial],
+          results: [a],
+          passed: true,
+          applicable: false,
+        };
       const b = run(spec, subsequent);
       return {
         inputs: [initial, subsequent],
         results: [a, b],
-        passed: a.terminal && decision(a) === decision(b),
+        passed: decision(a) === decision(b),
       };
     }
     case 'TEMPORAL_INTEGRITY': {
-      const later = addSeconds(input.context.asOf, 1);
+      const later = shiftedTime(input.context.asOf, 1);
+      if (later === undefined)
+        return { ...base, passed: true, applicable: false };
       return relation(
         {
           ...input,
@@ -297,25 +431,27 @@ function probe(
               ...input.evidence.observations,
               observation(spec, {
                 id: 'generated-future',
-                publishedAt: later,
-                availableAt: later,
-                value: admissibleBoundaryValue(
-                  spec.condition.strike,
-                  choice.offset === 1 ? -1 : 1,
-                ),
+                publishedAt:
+                  choice.futureKind === 'availability'
+                    ? spec.timing.observationEnd
+                    : later,
+                availableAt:
+                  choice.futureKind === 'publication'
+                    ? spec.timing.observationEnd
+                    : later,
+                value: contrastingValue(spec),
               }),
             ],
             events: [
               ...input.evidence.events,
               worldEvent(spec, 'corporateAction', {
                 id: 'generated-future-event',
-                occurredAt: later,
                 availableAt: later,
               }),
             ],
           },
         },
-        (a, b) => decision(a) === decision(b),
+        (a, b) => canonicalJson(a) === canonicalJson(b),
       );
     }
     case 'SOURCE_PRECEDENCE': {
@@ -330,10 +466,7 @@ function probe(
           ...primary,
           id: 'generated-dissenter',
           sourceId: secondary.id,
-          value: admissibleBoundaryValue(
-            spec.condition.strike,
-            choice.offset === 1 ? -1 : 1,
-          ),
+          value: contrastingValue(spec, primary.value),
         },
       ]);
       const a = run(spec, left);
@@ -345,10 +478,9 @@ function probe(
       };
     }
     case 'EXACT_BOUNDARY': {
-      const value = admissibleBoundaryValue(
-        spec.condition.strike,
-        choice.offset,
-      );
+      const value = choice.wide
+        ? choice.value
+        : admissibleBoundaryValue(spec.condition.strike, choice.offset);
       const clean = state(spec, [observation(spec, { value })]);
       const result = run(spec, clean);
       return {
@@ -364,8 +496,8 @@ function probe(
           first.payout === undefined ||
           (first.terminal &&
             first.payout.currency === 'USD' &&
-            compareDecimal(first.payout.amount, '0') >= 0 &&
-            compareDecimal(first.payout.amount, '1') <= 0 &&
+            referenceCompare(first.payout.amount, '0') >= 0 &&
+            referenceCompare(first.payout.amount, '1') <= 0 &&
             first.payout.amount ===
               spec.payout[first.status === 'YES' ? 'yes' : 'no']),
       };
@@ -375,10 +507,15 @@ function probe(
       });
       const clean = state(spec, [bad]);
       const result = run(spec, clean);
+      const absent = state(spec);
+      const withoutEvidence = run(spec, absent);
       return {
-        inputs: [clean],
-        results: [result],
-        passed: !result.evidenceUsed.includes(bad.id),
+        inputs: [clean, absent],
+        results: [result, withoutEvidence],
+        passed:
+          decision(result) === decision(withoutEvidence) &&
+          !result.evidenceUsed.includes(bad.id) &&
+          !result.trace.some((step) => step.code === 'EXACT_COMPARISON'),
       };
     }
     case 'FALLBACK_TERMINATION': {
@@ -477,7 +614,9 @@ export function checkClaim(
   const validation = validateClaim(input);
   const report: CheckReport = {
     engineVersion: ENGINE_VERSION,
-    specDigest: digest(input),
+    // Invalid API inputs need not be JSON-serializable. Hash their diagnostics;
+    // only a validated contract receives a contract digest below.
+    specDigest: digest({ invalid: validation.issues }),
     verdict: 'INVALID_SPEC',
     validation: { valid: validation.valid, issues: validation.issues },
     namedScenarios: [],
@@ -522,6 +661,16 @@ export function checkClaim(
           scenarioState.comparison.context,
         )
       : undefined;
+    if (scenario.property === 'FINALITY' && !result.terminal) {
+      report.namedScenarios.push({
+        id: scenario.id,
+        intent: scenario.intent,
+        status: 'SKIPPED',
+        resolution: result,
+        propertyFailures: [],
+      });
+      continue;
+    }
     const passed = scenario.assess
       ? scenario.assess(spec, scenarioState, result, comparison)
       : result.status !== 'UNDEFINED' &&
@@ -572,9 +721,27 @@ export function checkClaim(
       });
       continue;
     }
+    if (
+      (propertyId === 'FINALITY' || propertyId === 'TEMPORAL_INTEGRITY') &&
+      (shiftedTime(spec.timing.settlementAt, 1) === undefined ||
+        (propertyId === 'FINALITY' &&
+          !run(spec, state(spec, [observation(spec)])).terminal))
+    ) {
+      report.generated.checks.push({
+        propertyId,
+        runs: 0,
+        seed,
+        status: 'SKIPPED',
+      });
+      continue;
+    }
     try {
       const details = fc.check(
-        fc.property(worlds, (choice) => probe(spec, propertyId, choice).passed),
+        fc.property(worlds, (choice) => {
+          const captured = probe(spec, propertyId, choice);
+          fc.pre(captured.applicable !== false);
+          return captured.passed;
+        }),
         {
           numRuns: runs,
           seed,

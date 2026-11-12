@@ -76,6 +76,12 @@ excluded. These policies require an honest, retained, append-only history.
 Deletion, substitution, or falsification of old evidence is outside this
 finality guarantee.
 
+The correction cutoff and publication policy apply together.
+`latestUntilSettlement` can admit an older publication first retrieved between
+determination and settlement; it does not override `acceptUntilDetermination`
+to admit a new publication after determination. Unsupported leap seconds are
+rejected before Temporal can coerce them to the preceding second.
+
 Absent correction behavior can be resolved for an uncomplicated initial release
 yet become `UNDEFINED` when a linked restatement appears. An explicit correction
 review policy routes a correction visible by settlement to review and ignores
@@ -99,11 +105,24 @@ silently grants it concurrent authority. A replacement is active only when all
 predecessors in its chain are unavailable. An outage does not erase an eligible
 observation that was already available before the outage.
 
+Replacement routing applies when replacement is actually needed. Eligible
+cached evidence and independently authoritative sources remain usable without
+inventing a replacement rule. Inactive backup outages and lower-priority outages
+cannot override an eligible higher-priority source under precedence.
+
 Identical observations with the same ID are idempotent. Conflicting contents
 under one ID are an evidence-integrity failure. Deterministic sorting produces
 stable evidence IDs and logical traces across input permutations. Traces record
 major rule applications using codes and typed data, not wall-clock timing or
 implementation-dependent object inspection.
+
+Equivalent records with different ingestion IDs are coalesced before revision
+selection. Equivalence retains all supplied payload fields (including revision
+identity, provenance, and availability); parent aliases are resolved first.
+USD scales are equivalent only when exact conversion is explicitly permitted.
+Distinct revision identities are preserved even when their values happen to
+agree. Alias mappings are visible in the trace. All relevant revision chains
+are integrity-checked before a correction-review route can short-circuit them.
 
 Unit conversion requires explicit permission. USD, USD millions, and USD
 billions have exact power-of-ten relationships; percentages and counts are not
@@ -131,3 +150,8 @@ relationships such as permutation invariance and exclusion of future evidence;
 they do not independently prove that the entire business interpretation is
 correct. Review routes should be inspected by a human even when every check
 passes.
+
+The [adversarial review](adversarial-review.md) records the independent pressure
+and remaining blind spots of every property. In particular, terminal uniqueness
+is a status/payout consistency guard, and the generated fallback check exercises
+a self-cycle; neither is a general proof of settlement semantics.

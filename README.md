@@ -27,12 +27,17 @@ pnpm claimlint check examples/broken-demo.json
 pnpm claimlint check examples/hardened-demo.json
 ```
 
-Both fixtures describe the same fictional economic claim. The broken fixture is
+Both fixtures use the same fictional metric, strike, period, and payout. The broken fixture is
 schema-valid but omits exception policies. Its check returns
 `COUNTEREXAMPLE_FOUND`, with concrete `UNDEFINED` resolutions for mature evidence
 states. The hardened fixture defines those policies and should return
 `NO_COUNTEREXAMPLE_FOUND` under the current model. Its review routes remain
 visible: a defined review process is not a completed financial determination.
+
+The hardened fixture also chooses one-decimal half-even rounding. That changes
+some otherwise defined boundary results: an observed `31.04` billion is `YES`
+under the broken fixture's exact comparison and `NO` under the hardened fixture.
+Hardening is a contractual choice, not a promise to preserve every earlier payout.
 
 Each report gives the number of named scenarios, generated property cases
 actually executed, seed, engine version, and specification digest. Defaults are 1,000 runs
@@ -126,6 +131,11 @@ or settlement time. Later retrieval cannot retroactively enter that snapshot,
 even if its publication timestamp is older. Finality assumes an append-only,
 honest evidence history; it is not a persisted or cryptographically verified
 settlement ledger.
+
+Leap-second timestamps are rejected: Temporal's `:60` to `:59` coercion is not
+an admissible time conversion for settlement. See the
+[adversarial review](docs/adversarial-review.md) for reproduced defects, fixes,
+and the actual statements and limits of each generated property.
 
 ## Engineering and scope
 

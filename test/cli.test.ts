@@ -257,7 +257,7 @@ test('help documents defaults and version has no side effects', () => {
   assert.match(result.stdout, /18472941/);
   const version = cli('--version', '--format', 'json');
   assert.equal(version.status, 0);
-  assert.equal(output<{ output: string }>(version).output, '0.1.0');
+  assert.equal(output<{ output: string }>(version).output, '0.1.1');
 });
 
 test('CLI rejects oversized input before decoding JSON', async () => {

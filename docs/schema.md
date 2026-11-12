@@ -31,6 +31,9 @@ normalize to the same UTC instant. Reporting periods contain `id`, `start`,
 an inferred schedule. Changing a period ID, its bounds, or its calendar does not
 silently retarget a claim.
 
+Leap seconds (`:60`, including basic ISO time encodings) are unsupported and
+rejected rather than silently mapped to `:59`.
+
 ## Policies
 
 | Policy                                                                          | Supported values and effect                                                                                                                                                               |
@@ -69,6 +72,12 @@ a source rank, revision ordering, or tie-break rule.
 process. For eligible observations, it cannot precede publication. An observation
 must satisfy both temporal conditions. An old publication with a newly observed
 availability timestamp cannot be inserted retroactively into a frozen snapshot.
+
+Duplicate payloads under different ingestion IDs are aliases, including exactly
+equivalent USD scales only when conversion is permitted. Revision identity,
+provenance, publication, and availability must agree; distinct revision identities
+are not merged. Parent aliases are resolved before selecting current revisions.
+The trace records any alias mapping.
 
 A world event has a stable `id`, authoritative `sourceId`, `entityId`, `type`,
 `occurredAt`, and `availableAt`, optionally `metricId` and `detail`. Supported types

@@ -9,4 +9,16 @@ export {
   type PropertyCheckResult,
   type ScenarioResult,
 } from './check.js';
-export * from './scenarios.js';
+export {
+  SCENARIOS,
+  primarySources,
+  observation,
+  worldEvent,
+  state,
+  decision,
+  expectedBoundary,
+  admissibleBoundaryValue,
+  fineBoundaryValue,
+  type AdversarialScenario,
+  type ScenarioState,
+} from './scenarios.js';

@@ -7,18 +7,12 @@ import {
   type ResolutionResult,
   type ResolutionStatus,
   type TraceStep,
-  type Unit,
 } from './model.js';
 import { validateClaim } from './validation.js';
 import { canonicalJson, lexical } from './canonical.js';
 import { compareDecimal, roundDecimal, shiftDecimal } from './decimal.js';
 import { compareTime } from './time.js';
-
-const usdPowers: Partial<Record<Unit, number>> = {
-  USD: 0,
-  USD_million: 6,
-  USD_billion: 9,
-};
+import { coalesceObservations, USD_POWERS as usdPowers } from './evidence.js';
 
 export function compareCondition(
   value: string,
@@ -132,9 +126,13 @@ export function resolve(
     }
     unique.set(item.id, encoded);
   }
-  const observations = [
-    ...new Map(visibleObservations.map((o) => [o.id, o])).values(),
-  ].sort((a, b) => lexical(a.id, b.id));
+  const coalesced = coalesceObservations(
+    [...new Map(visibleObservations.map((o) => [o.id, o])).values()],
+    spec,
+  );
+  const observations = coalesced.observations;
+  for (const [evidenceId, canonicalEvidenceId] of coalesced.aliases)
+    step('OBSERVATION_ALIAS', { evidenceId, canonicalEvidenceId });
   const events = [
     ...new Map(visibleEvents.map((e) => [e.id, e])).values(),
   ].sort((a, b) => lexical(a.id, b.id));
@@ -185,30 +183,6 @@ export function resolve(
     id: string;
   };
   const routes: Route[] = [];
-  for (const event of applicableEvents) {
-    if (event.type === 'sourceOutage' || event.type === 'sourceReplacement') {
-      supportingEvidence.add(event.id);
-      const hasReplacement = sources.some((s) => s.replaces === event.sourceId);
-      if (hasReplacement || event.type === 'sourceReplacement') {
-        if (policies.sourceReplacement !== 'fallback')
-          routes.push({
-            action: policies.sourceReplacement,
-            reason: 'SOURCE_REPLACEMENT_POLICY_MISSING',
-            id: event.id,
-          });
-        else
-          step('SOURCE_REPLACEMENT_ACTIVATED', {
-            sourceId: event.sourceId,
-            eventId: event.id,
-          });
-      } else
-        step('SOURCE_UNAVAILABLE', {
-          sourceId: event.sourceId,
-          eventId: event.id,
-        });
-      continue;
-    }
-  }
   const metricEvents = applicableEvents.filter(
     (event) =>
       event.type !== 'sourceOutage' &&
@@ -247,28 +221,28 @@ export function resolve(
     candidates.push(observation);
   }
   let authorityId: string | undefined;
+  const potentiallyUsable = candidates.filter((o) => {
+    if (compareTime(o.publishedAt, spec.timing.observationEnd) < 0)
+      return false;
+    if (policies.provisional === 'finalOnly' && o.status === 'provisional')
+      return false;
+    if (
+      compareTime(o.publishedAt, spec.timing.publicationDeadline) > 0 &&
+      (policies.latePublication === 'reject' ||
+        (policies.latePublication === 'acceptUntilDetermination' &&
+          compareTime(o.publishedAt, spec.timing.determinationAt) > 0))
+    )
+      return false;
+    if (
+      o.unit !== spec.reference.unit &&
+      (policies.units === 'exact' ||
+        usdPowers[o.unit] === undefined ||
+        usdPowers[spec.reference.unit] === undefined)
+    )
+      return false;
+    return true;
+  });
   if (policies.sourceConflict === 'precedence') {
-    const potentiallyUsable = candidates.filter((o) => {
-      if (compareTime(o.publishedAt, spec.timing.observationEnd) < 0)
-        return false;
-      if (policies.provisional === 'finalOnly' && o.status === 'provisional')
-        return false;
-      if (
-        compareTime(o.publishedAt, spec.timing.publicationDeadline) > 0 &&
-        (policies.latePublication === 'reject' ||
-          (policies.latePublication === 'acceptUntilDetermination' &&
-            compareTime(o.publishedAt, spec.timing.determinationAt) > 0))
-      )
-        return false;
-      if (
-        o.unit !== spec.reference.unit &&
-        (policies.units === 'exact' ||
-          usdPowers[o.unit] === undefined ||
-          usdPowers[spec.reference.unit] === undefined)
-      )
-        return false;
-      return true;
-    });
     const authority = sources.find(
       (source) =>
         potentiallyUsable.some((o) => o.sourceId === source.id) ||
@@ -286,6 +260,64 @@ export function resolve(
         });
       candidates = candidates.filter((o) => o.sourceId === authority.id);
     }
+  }
+  for (const event of applicableEvents) {
+    if (event.type !== 'sourceOutage' && event.type !== 'sourceReplacement')
+      continue;
+    if (!active.has(event.sourceId)) continue;
+    const eventPriority = sources.find(
+      (s) => s.id === event.sourceId,
+    )!.priority;
+    if (
+      authorityId !== undefined &&
+      sources.find((s) => s.id === authorityId)!.priority < eventPriority
+    )
+      continue;
+    supportingEvidence.add(event.id);
+    const cached = potentiallyUsable.some(
+      (o) =>
+        o.sourceId === event.sourceId &&
+        o.definitionId === spec.reference.definitionId &&
+        compareTime(o.availableAt, event.occurredAt) <= 0,
+    );
+    if (cached) {
+      step('CACHED_SOURCE_EVIDENCE_RETAINED', {
+        sourceId: event.sourceId,
+        eventId: event.id,
+      });
+      continue;
+    }
+    if (
+      potentiallyUsable.some(
+        (o) =>
+          o.definitionId === spec.reference.definitionId &&
+          !sources.find((source) => source.id === o.sourceId)!.replaces,
+      )
+    ) {
+      step('INDEPENDENT_SOURCE_REMAINS_AVAILABLE', {
+        sourceId: event.sourceId,
+        eventId: event.id,
+      });
+      continue;
+    }
+    const hasReplacement = sources.some((s) => s.replaces === event.sourceId);
+    if (hasReplacement || event.type === 'sourceReplacement') {
+      if (policies.sourceReplacement !== 'fallback')
+        routes.push({
+          action: policies.sourceReplacement,
+          reason: 'SOURCE_REPLACEMENT_POLICY_MISSING',
+          id: event.id,
+        });
+      else
+        step('SOURCE_REPLACEMENT_ACTIVATED', {
+          sourceId: event.sourceId,
+          eventId: event.id,
+        });
+    } else
+      step('SOURCE_UNAVAILABLE', {
+        sourceId: event.sourceId,
+        eventId: event.id,
+      });
   }
   for (const event of metricEvents) {
     if (authorityId !== undefined && event.sourceId !== authorityId) continue;
@@ -379,7 +411,9 @@ export function resolve(
   });
 
   // Revisions are explicit graph edges, never an inference from array order or timestamps.
+  const correctionIds: string[] = [];
   for (const observation of candidates.filter((o) => o.revises !== undefined)) {
+    correctionIds.push(observation.id);
     evidenceUsed = [observation.id];
     if (!policies.corrections)
       return result('UNDEFINED', 'CORRECTIONS_POLICY_MISSING');
@@ -405,12 +439,14 @@ export function resolve(
       supportingEvidence.add(parent.id);
       child = parent;
     }
-    if (policies.corrections === 'review')
-      return result('REVIEW_REQUIRED', 'CORRECTION_REVIEW', spec);
     step('REVISION_CHAIN_VALIDATED', {
       evidenceId: observation.id,
       revises: observation.revises!,
     });
+  }
+  if (correctionIds.length && policies.corrections === 'review') {
+    evidenceUsed = correctionIds;
+    return result('REVIEW_REQUIRED', 'CORRECTION_REVIEW', spec);
   }
   if (policies.provisional === 'finalOnly') {
     for (const o of candidates.filter((o) => o.status === 'provisional'))
