@@ -1,0 +1,55 @@
+{
+  "artifactKind": "synthetic-evidence-catalogue-for-incomplete-normalization",
+  "isActualReportedEvidence": false,
+  "contractDraft": "../zoom-fy2027-customers-100k.draft.json",
+  "warning": "There is no verified real-contract resolution expectation while required terms remain unbound. Every draft resolution must be INVALID_SPEC, not a settlement verdict.",
+  "cases": [
+    {
+      "file": "above.json",
+      "intent": "Numeric value above the discovered threshold; strict comparator would be true if eligible.",
+      "asOf": "2027-03-02T00:00:00Z"
+    },
+    {
+      "file": "equal.json",
+      "intent": "Exact equality does not satisfy a strict above-threshold question.",
+      "asOf": "2027-03-02T00:00:00Z"
+    },
+    {
+      "file": "below.json",
+      "intent": "Numeric value below the discovered threshold.",
+      "asOf": "2027-03-02T00:00:00Z"
+    },
+    {
+      "file": "unavailable.json",
+      "intent": "No target-period report available at the research date; no contractual determination instant asserted.",
+      "asOf": "2026-11-13T00:00:00Z"
+    },
+    {
+      "file": "later-publication.json",
+      "intent": "Sample later publication after the displayed latest close; contractual treatment is unverified.",
+      "asOf": "2027-06-02T00:00:00Z"
+    },
+    {
+      "file": "wrong-period.json",
+      "intent": "Prior annual-period negative control; not a target-period report or verified Fiscal.ai release.",
+      "asOf": "2027-03-02T00:00:00Z"
+    },
+    {
+      "file": "correction.json",
+      "intent": "First eligible official publication is 4801; a subsequent correction gives 4799. Family terms ignore subsequent corrections. Existing v1 correction policies do not express that dynamic selection.",
+      "asOf": "2027-03-03T00:00:00Z",
+      "familyRuleConditionalExpectation": "YES if the initial observation is the first eligible official annual report; not an actual market determination."
+    },
+    {
+      "file": "source-conflict.json",
+      "intent": "Two specific values from disclosure channels at the same hypothetical reporting event; press release outranks government filing in the family hierarchy.",
+      "asOf": "2027-03-02T00:00:00Z",
+      "familyRuleConditionalExpectation": "YES for the eligible specific-number reporting hierarchy; full market binding remains unverified."
+    }
+  ],
+  "omittedCases": [],
+  "retainedLimits": [
+    "Corrections and disclosure conflicts are now meaningful from the retrieved ANNUALKPI rules, but no fabricated ClaimSpec policy is added.",
+    "Closed/open ranges, discontinued-metric fair-price payouts and dynamic expiry remain outside the current engine model; see rule coverage."
+  ]
+}

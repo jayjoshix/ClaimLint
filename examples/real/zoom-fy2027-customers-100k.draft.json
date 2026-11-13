@@ -1,0 +1,38 @@
+{
+  "schemaVersion": "1.0",
+  "id": "KXZMA-27FEBCUST100K-4800",
+  "title": "INCOMPLETE NORMALIZATION: Zoom FY2027 customers over $100k TTM revenue, Above 4800",
+  "description": "Research draft, deliberately not a valid ClaimSpecV1. The public ANNUALKPI family terms and market summary support the numeric question and ordinary USD 1/0 payout, but v1 cannot encode the full first-report, dynamic-expiry and exceptional payout semantics. Required source mapping, period instants and timing remain unbound. See the adjacent provenance and rule-coverage documents.",
+  "reference": {
+    "entityId": "zoom-communications-inc",
+    "entityName": "Zoom Communications, Inc.",
+    "metricId": "customers-over-usd100000-ttm-revenue",
+    "metricName": "Customers contributing more than USD 100,000 in trailing twelve-month revenue",
+    "metricDefinition": "Count of Enterprise customers contributing more than USD 100,000 in trailing twelve-month revenue; not the Enterprise customer total, annual recurring revenue (ARR), or net expansion rate. The market summary selects the annual/full-year-or-Q4 figure. Archived company filings define a customer as a separate buying entity, which may be a paid user, organization, or organizational unit; Enterprise customers are distinct business units engaged through direct sales, resellers, or strategic partners. Inspected FY2026 annual and FY2027 Q2 definitions are consistent; no future FY2027 Q4 definition or reporting value is assumed.",
+    "definitionId": "zoom-100k-ttm-revenue-research-draft",
+    "unit": "count",
+    "reportingPeriod": {
+      "id": "zoom-fy2027-annual-q4",
+      "calendar": "Zoom FY2027 ends January 31, 2027; date-to-instant mapping intentionally unbound"
+    }
+  },
+  "condition": { "comparator": ">", "strike": "4800" },
+  "policies": {},
+  "payout": { "currency": "USD", "yes": "1", "no": "0" },
+  "provenance": {
+    "kind": "normalized-public",
+    "publisher": "KalshiEX LLC; Zoom Communications, Inc. for the company metric",
+    "documentTitle": "KXZMA-27FEBCUST100K-4800 public market discovery and incomplete normalization",
+    "retrievedAt": "2026-11-13T02:31:30.811174Z",
+    "reference": "https://kalshi.com/markets/kxzma",
+    "normalizedFields": [
+      "market/event/series identifiers from the public discovery extract",
+      "numeric question: customer count strictly above 4800",
+      "annual/full-year-or-Q4 reporting qualifier",
+      "Fiscal.ai as summary verification metadata, not silently bound settlement authority",
+      "ordinary USD 1/0 payout from ANNUALKPI family terms, with unsupported exceptional allocations retained in rule coverage",
+      "company metric/customer definitions and fiscal year-end from archived SEC originals; see source manifests"
+    ],
+    "interpretation": "Not an executable real contract. retrievedAt identifies an archived SEC source retrieval, not the market's terms revision; every original has separate retrieval metadata. Metric IDs are local labels. Sources remain unbound because the template's agency list and conditional disclosure hierarchy cannot be replaced by a single Fiscal.ai priority. Fixed timing and period instants are not invented. Absent policies reflect unknown or unsupported semantics, not contractual omissions: first official publication, fair-price discontinuation payouts, ranges and dynamic expiry are explicitly documented but not represented by v1 policies. Historical Kalshi rulebooks are not substituted for the unverified governing version. Ordinary binary payout alone does not represent exceptional allocations. See the adjacent provenance and rule-coverage files."
+  }
+}

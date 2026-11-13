@@ -1,0 +1,30 @@
+{
+  "observations": [
+    {
+      "id": "synthetic-wrong-period",
+      "sourceId": "zoom-earnings-release",
+      "entityId": "zoom-communications-inc",
+      "metricId": "customers-over-usd100000-ttm-revenue",
+      "definitionId": "zoom-100k-ttm-revenue-research-draft",
+      "value": "4468",
+      "unit": "count",
+      "reportingPeriod": {
+        "id": "zoom-fy2026-annual-q4",
+        "start": "2025-02-01T00:00:00Z",
+        "end": "2026-02-01T00:00:00Z",
+        "calendar": "TEST-ASSUMPTION: UTC encoding of fiscal date labels; not contractual timezone"
+      },
+      "publishedAt": "2026-03-01T12:00:00Z",
+      "availableAt": "2026-03-01T12:00:00Z",
+      "status": "final",
+      "provenance": {
+        "kind": "synthetic-evidence",
+        "purpose": "Hypothetical world for an incomplete research draft; never an actual Zoom release. Source IDs are local disclosure-channel labels from the family rule hierarchy.",
+        "timing": "Sample publication and retrieval instants, not a contractual deadline or prediction.",
+        "periodEncoding": "UTC boundaries are test labels only; the contract draft deliberately leaves period instants unbound.",
+        "status": "final is an assumed evidence label, not a verified contractual finality classification."
+      }
+    }
+  ],
+  "events": []
+}

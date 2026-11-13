@@ -1,0 +1,14 @@
+[
+  {
+    "url": "https://www.sec.gov/files/kalshiex-form-1-n.pdf?download=1",
+    "requestVariant": "download-query",
+    "retrievedAt": "2026-11-13T02:37:49.690966+00:00",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "url": "https://www.sec.gov/files/kalshiex-form-1-n.pdf",
+    "requestVariant": "range-header",
+    "retrievedAt": "2026-11-13T02:37:49.859063+00:00",
+    "error": "HTTP Error 403: Forbidden"
+  }
+]

@@ -1,0 +1,48 @@
+{
+  "artifactKind": "verified-company-metric-context-not-contract-terms",
+  "verifiedOn": "2026-11-13",
+  "entity": "Zoom Communications, Inc.",
+  "metric": {
+    "unit": "count",
+    "qualifyingRevenueComparator": ">",
+    "qualifyingRevenueThreshold": {
+      "value": "100000",
+      "currency": "USD",
+      "period": "trailing twelve months"
+    },
+    "population": "Enterprise customers",
+    "customerIdentity": "A separate buying entity; this can be a paid user, organization, or distinct organizational unit.",
+    "enterpriseIdentity": "Distinct business units reached through direct sales, resellers, or strategic partners.",
+    "notEquivalentTo": [
+      "all Enterprise customers",
+      "Contact Center ARR customer counts",
+      "annual recurring revenue",
+      "net dollar expansion rate",
+      "sum of quarterly customer counts"
+    ],
+    "definitionChangeAssessment": "No change identified between the archived FY2026 annual/Q4 and FY2027 Q2 materials. This is not a claim about all history or the future target report."
+  },
+  "target": {
+    "fiscalYear": "FY2027",
+    "fiscalYearEndCalendarDate": "2027-01-31",
+    "source": "zoom-fy2027-q2-10q.txt; Note 1 / Fiscal Year",
+    "interpretation": "A conventional single fiscal year ending January 31, 2027 spans calendar dates February 1, 2026 through January 31, 2027. No issuer timezone is specified in the cited fiscal-year note; no contractual instants are inferred.",
+    "annualReportAvailableAtResearchDate": false
+  },
+  "historicalContext": [
+    {
+      "periodEnd": "2026-01-31",
+      "value": "4468",
+      "sourceFile": "zoom-fy2026-q4-release-filing.txt",
+      "section": "Exhibit 99.1 / Customer Metrics"
+    },
+    {
+      "periodEnd": "2026-07-31",
+      "value": "4625",
+      "sourceFile": "zoom-fy2027-q2-release-filing.txt",
+      "section": "Exhibit 99.1 / Customer Metrics"
+    }
+  ],
+  "originalSourceManifest": "sources/zoom-fy2027-customers-100k/zoom-original-manifest.json",
+  "authorityWarning": "Company filings establish metric/calendar context. They are not substituted for Fiscal.ai as the market's verification source, and neither historical value resolves the target FY2027 annual market."
+}

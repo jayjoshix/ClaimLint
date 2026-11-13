@@ -1,0 +1,72 @@
+{
+  "artifactKind": "rulebook-original-document-retrieval-manifest",
+  "currentFullRulebookObtained": false,
+  "governingVersionVerified": false,
+  "warning": "Historical rulebook and March2026 amendment are preserved; applicability of a complete current rulebook to the target Zoom market remains unverified.",
+  "records": [
+    {
+      "file": "rulebook-index.html",
+      "url": "https://www.kalshi.com/regulatory/rulebook",
+      "retrievedAt": "2026-11-13T02:30:10.006964+00:00",
+      "error": "<urlopen error timed out>"
+    },
+    {
+      "file": "rulebook-official.pdf",
+      "url": "https://kalshi.com/docs/kalshi-rulebook.pdf",
+      "retrievedAt": "2026-11-13T02:30:26.083961+00:00",
+      "error": "<urlopen error timed out>"
+    },
+    {
+      "file": "rulebook-v1.29-alt.pdf",
+      "url": "https://kalshi-public-docs.s3.amazonaws.com/regulatory/rulebook/Kalshi%20DCM%20Rulebook%20v1.29.pdf",
+      "retrievedAt": "2026-11-13T02:30:42.100917+00:00",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "file": "rulebook-v1.29-alt2.pdf",
+      "url": "https://kalshi-public-docs.s3.amazonaws.com/regulatory/rulebook/Kalshi%20Rulebook%20v1.29.pdf",
+      "retrievedAt": "2026-11-13T02:30:42.779413+00:00",
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "file": "rulebook-20260302-amendment.pdf",
+      "url": "https://kalshi-public-docs.s3.amazonaws.com/regulatory/notices/rules03022640155.pdf",
+      "retrievedAt": "2026-11-13T02:30:43.503315+00:00",
+      "status": 200,
+      "finalUrl": "https://kalshi-public-docs.s3.amazonaws.com/regulatory/notices/rules03022640155.pdf",
+      "contentType": "application/pdf",
+      "sha256": "cb84ebe8b15adc5e3a501a06ab104aa865e0bc6279f88c46bf66fa8b78907953",
+      "bytes": 113924,
+      "bodyPreserved": true
+    },
+    {
+      "file": "rulebook-historical-20241114.pdf",
+      "url": "https://www.cftc.gov/sites/default/files/filings/orgrules/24/11/rules1114248723.pdf",
+      "retrievedAt": "2026-11-13T02:32:21.526311+00:00",
+      "versionScope": "Historical November 14, 2024 filing; not established as governing the FY2027 Zoom market.",
+      "status": 200,
+      "bytes": 1438346,
+      "sha256": "8113d2d4967217b37005f6a45aaf06b6986fca87f63c2eb8aa5ae80167f4c082",
+      "contentType": "application/pdf",
+      "bodyPreserved": true
+    },
+    {
+      "url": "https://www.sec.gov/files/kalshiex-form-1-n.pdf",
+      "retrievedAt": "2026-11-13T02:31:03.769299+00:00",
+      "purpose": "Read rulebook included in official Form 1-N; verify document version before using it as authority.",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "url": "https://www.sec.gov/files/kalshiex-form-1-n.pdf?download=1",
+      "requestVariant": "download-query",
+      "retrievedAt": "2026-11-13T02:37:49.690966+00:00",
+      "error": "HTTP Error 403: Forbidden"
+    },
+    {
+      "url": "https://www.sec.gov/files/kalshiex-form-1-n.pdf",
+      "requestVariant": "range-header",
+      "retrievedAt": "2026-11-13T02:37:49.859063+00:00",
+      "error": "HTTP Error 403: Forbidden"
+    }
+  ]
+}

@@ -1,7 +1,15 @@
 {
   "name": "claimlint",
   "version": "0.1.1",
-  "description": "Adversarial verification of binary externally resolved claim semantics",
+  "description": "Adversarial testing for binary financial-claim settlement semantics",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jayjoshix/ClaimLint.git"
+  },
+  "homepage": "https://github.com/jayjoshix/ClaimLint#readme",
+  "bugs": {
+    "url": "https://github.com/jayjoshix/ClaimLint/issues"
+  },
   "type": "module",
   "license": "Apache-2.0",
   "engines": {
@@ -19,8 +27,24 @@
   },
   "files": [
     "dist",
-    "examples",
-    "docs",
+    "examples/*.json",
+    "examples/evidence/*.json",
+    "examples/real/*.json",
+    "examples/real/*.md",
+    "examples/real/*.evidence/*.json",
+    "examples/real/sources/**/*.json",
+    "examples/real/prophetx-gemini-nov2026-100m/*.json",
+    "examples/real/prophetx-gemini-nov2026-100m/*.md",
+    "examples/real/prophetx-gemini-nov2026-100m/witnesses",
+    "examples/real/prophetx-gemini-nov2026-100m/sources/*-manifest.json",
+    "docs/architecture.md",
+    "docs/schema.md",
+    "docs/threat-model.md",
+    "docs/adversarial-review.md",
+    "docs/prior-art.md",
+    "docs/real-fixture-candidate-survey.md",
+    "docs/source-archives.md",
+    "docs/assets/*.svg",
     "README.md",
     "SECURITY.md",
     "LICENSE"

@@ -1,0 +1,56 @@
+{
+  "schemaVersion": "1.0",
+  "id": "PROPHX-65632-GEMINI-NOV2026-100M",
+  "title": "UNSUPPORTED NORMALIZATION DRAFT: Will Gemini's event contract notional traded volume exceed $100 million in November 2026?",
+  "description": "Not an executable real ClaimSpecV1. The source package establishes the economic clause and ordinary payout, but per-trade-date source composition, conditional void/collateral return and Rule 5.2 actions are not representable. Reported trade-date identity is not replaced by expected clock bounds; the business-day calendar and fixed lifecycle instants are not silently invented. See support-matrix.json and provenance.md.",
+  "reference": {
+    "entityId": "gemini-titan",
+    "entityName": "Gemini Titan, LLC, including a successor to the same market designation",
+    "metricId": "gemini-titan-reference-volume",
+    "metricName": "Reference Volume of Gemini Titan event-contract transactions",
+    "metricDefinition": "Aggregate USD notional of all reported Gemini Titan event-contract transactions attributed to the November 1-30, 2026 reported trade dates. Contract quantities, including fractions, times USD 1 or the source-identified settlement value for that contract; computed to the cent as reported, independently of trade price or premium. All reported contracts, payout types, categories, channels, counterparties and active/closed status are included. Market Data contracts_traded first, Trade Data Quantity second, hourly top-level category volume third, separately for each missing trade date. block_volume is not added separately. Cumulative, annualized, rounded, premium, partner, multi-venue and unrelated-business figures are excluded. This description records terms; it does not implement their aggregation or eligibility rules.",
+    "definitionId": "prophetx-65632-appendix-a-2026-10-23",
+    "unit": "USD",
+    "reportingPeriod": {
+      "id": "gemini-titan-trade-dates-2026-11",
+      "calendar": "Reported Gemini Titan trade dates November 1-30, 2026, including weekends. Expected ET clock envelope recorded separately in provenance; fixed instant bounds deliberately unbound."
+    }
+  },
+  "condition": { "comparator": ">", "strike": "100000000" },
+  "sources": [
+    {
+      "id": "gemini-titan-market-data",
+      "name": "Gemini Titan Market Data report, contracts_traded",
+      "priority": 1,
+      "reference": "https://www.gemini.com/titan/trade-and-market-data"
+    },
+    {
+      "id": "gemini-titan-trade-data",
+      "name": "Gemini Titan Trade Data report, Quantity",
+      "priority": 2,
+      "reference": "https://www.gemini.com/titan/trade-and-market-data"
+    },
+    {
+      "id": "gemini-hourly-volume",
+      "name": "Gemini hourly prediction-market volume, top-level categories only",
+      "priority": 3,
+      "reference": "https://developer.gemini.com/prediction-markets-spec/volume"
+    }
+  ],
+  "policies": {},
+  "payout": { "currency": "USD", "yes": "1", "no": "0" },
+  "provenance": {
+    "kind": "normalized-public",
+    "publisher": "ProphetX LLC, via CFTC product filings 65632 and 65633",
+    "documentTitle": "October 23, 2026 exact contract and Gemini Monthly Event Contract Volume Contracts certifications, Appendix A",
+    "retrievedAt": "2026-11-13T03:03:19.305783Z",
+    "reference": "https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationProducts/65632",
+    "normalizedFields": [
+      "numeric economic condition and unit",
+      "reported trade-date month identity",
+      "local source IDs with documented tier order only",
+      "ordinary binary payout, excluding documented exceptional dispositions"
+    ],
+    "interpretation": "Deliberately incomplete: not VERIFIED_SUPPORTED_REAL_FIXTURE. Local metric/source IDs are normalization labels. These three source tiers must apply separately to each trade date, not as global source selection. Empty policies mean known contractual behavior is unsupported, not absent in the real terms. A defined void/collateral return is never mapped to NO, UNDEFINED or review. Rule 5.2 conditional finality is not replaced by unconditional freeze. Required start/end/timing fields remain unbound; CLI INVALID_SPEC concerns this draft only. Full exact/series filings, v4.0 Rulebook and explanatory Gemini sources are archived with per-file metadata and SHA-256 hashes. See support-matrix.json and provenance.md."
+  }
+}

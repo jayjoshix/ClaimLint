@@ -1,0 +1,138 @@
+{
+  "artifactKind": "real-contract-model-fit-assessment",
+  "engineVersion": "0.1.1",
+  "researchOutcome": "C",
+  "fixtureStatus": "UNSUPPORTED_CASE_STUDY",
+  "verifiedSupportedRealFixture": false,
+  "productFilingId": "65632",
+  "seriesFilingId": "65633",
+  "assessedAtDate": "2026-11-13",
+  "classification": {
+    "A": {
+      "established": false,
+      "reason": "No defect or missing contractual rule is asserted."
+    },
+    "B": {
+      "present": true,
+      "reason": "The governing business-day calendar was not established; confidential compliance appendices are not public. Future amendments and notices through settlement cannot yet be established."
+    },
+    "C": {
+      "present": true,
+      "reason": "Per-trade-date source substitution, conditional void/collateral return and Rule 5.2 settlement actions exceed ClaimSpecV1. A scalar projection would omit material terms."
+    },
+    "D": {
+      "established": false,
+      "reason": "The witnesses demonstrate declared model boundaries, not a newly discovered resolver implementation defect."
+    }
+  },
+  "requirements": [
+    {
+      "id": "PX01",
+      "requirement": "Strict USD Reference Volume > 100000000; equality is NO",
+      "support": "SUPPORTED EXACTLY",
+      "basis": "Exact Appendix A pp.5,7; exact bigint decimal comparison."
+    },
+    {
+      "id": "PX02",
+      "requirement": "Ordinary USD 1/0 binary payout for the YES position",
+      "support": "SUPPORTED EXACTLY",
+      "basis": "Exact Appendix A p.8; this excludes exceptional dispositions."
+    },
+    {
+      "id": "PX03",
+      "requirement": "All eligible Gemini Titan trades, fractional quantities and contract-specific settlement multipliers; cent-scale aggregate; no premium",
+      "support": "UNSUPPORTED",
+      "classification": "C",
+      "basis": "Exact Appendix A pp.5-6. Scalar observations can carry a trusted computed amount, but ClaimLint does not execute or check this aggregation. An audited offline computation can establish inputs; it does not add these invariants to the resolver."
+    },
+    {
+      "id": "PX04",
+      "requirement": "Exhaustive eligible-publication list and exclusions, including cumulative, UTC-day, partner and multi-venue figures",
+      "support": "UNSUPPORTED",
+      "classification": "C",
+      "basis": "Exact Appendix A p.6. Source IDs can reject an undeclared publisher, but prose/provenance cannot distinguish an ineligible statistic falsely labelled with an eligible source/metric ID. Evidence normalization is a trust boundary."
+    },
+    {
+      "id": "PX05",
+      "requirement": "Reported November 1-30 trade-date attribution; clock envelope is expected, not controlling",
+      "support": "APPROXIMATED — NOT ACCEPTABLE FOR VERIFIED FIXTURE",
+      "classification": "C",
+      "basis": "Exact Appendix A p.5. A period ID can name the month, but required fixed interval bounds alone cannot execute reported trade-date attribution. The derived DST envelope is explanatory; it is not silently bound as the real period."
+    },
+    {
+      "id": "PX06",
+      "requirement": "Primary Market Data, secondary Trade Data, tertiary hourly top-level categories",
+      "support": "SUPPORTED EXACTLY",
+      "basis": "Exact Appendix A pp.6-7 establishes the tier ordering. This row covers only source identity/order, not the per-date application in PX07."
+    },
+    {
+      "id": "PX07",
+      "requirement": "Fallback separately for each missing trade date, with completeness and disclosed substitutions",
+      "support": "UNSUPPORTED",
+      "classification": "C",
+      "basis": "Exact Appendix A p.7. Resolver selects one whole-period source/observation; it cannot compose primary dates with secondary/tertiary missing dates. The 30-date witness gives 110m vs a mistaken whole-source result of 60m."
+    },
+    {
+      "id": "PX08",
+      "requirement": "Outcome-changing disagreements and settlement disruption",
+      "support": "UNSUPPORTED",
+      "classification": "C",
+      "basis": "Exact Appendix A pp.6-7 and Rule 5.2. Priority alone or automatically routing every disagreement to review does not implement the documented materiality/authority relationship."
+    },
+    {
+      "id": "PX09",
+      "requirement": "17:00 ET, second business day after period end; expiration at cutoff",
+      "support": "UNVERIFIED",
+      "classification": "B",
+      "basis": "Exact Appendix A pp.7-8. Full Rulebook/Terms inspected but no governing business-day definition established. Dec 2 22:00Z is a conditional weekday derivation, not a verified contractual instant."
+    },
+    {
+      "id": "PX10",
+      "requirement": "Publication-as-of cutoff, pre-cutoff corrections included, later corrections excluded",
+      "support": "APPROXIMATED — NOT ACCEPTABLE FOR VERIFIED FIXTURE",
+      "classification": "C",
+      "basis": "Exact Appendix A p.7. freezeAtDetermination demonstrates the ordinary clause for evidence already available by cutoff. The core additionally freezes evaluator availability, and has no separately modelled publication snapshot/retrieval record. Inclusive exact-cutoff whole-second treatment is an explicitly stated interpretation."
+    },
+    {
+      "id": "PX11",
+      "requirement": "Changed/absent reports: next same-data means, optional other same-data publication, reasonable/unequivocal determination",
+      "support": "UNSUPPORTED",
+      "classification": "C",
+      "basis": "Exact Appendix A pp.7-8 C/E. Generic replacement events and fixed action policies do not determine these judgments or partial-data sufficiency."
+    },
+    {
+      "id": "PX12",
+      "requirement": "Conditional void with collateral returned",
+      "support": "UNSUPPORTED",
+      "classification": "C",
+      "basis": "Exact Appendix A pp.7-8 C/E. No VOIDED/collateral-return result or action exists. NO, UNDEFINED and REVIEW_REQUIRED are not this defined disposition. A general terminal collateral-return primitive could represent it, but would not satisfy the other gates."
+    },
+    {
+      "id": "PX13",
+      "requirement": "Settlement by one business day following expiration, except review",
+      "support": "APPROXIMATED — NOT ACCEPTABLE FOR VERIFIED FIXTURE",
+      "classification": "C",
+      "basis": "Exact Appendix A p.8. One eligibility instant can describe a simplified ordinary path, not the complete settlement window and review-dependent lifecycle."
+    },
+    {
+      "id": "PX14",
+      "requirement": "Final once effected, subject to Rule 5.2 reversal/amendment/resettlement and discretionary allocation",
+      "support": "UNSUPPORTED",
+      "classification": "C",
+      "basis": "Exact Appendix A p.8; Rulebook v4.0 Rule 5.2, printed p.40. No disruption adjudication/result, last-traded-price allocation or authenticated settlement amendment state. A named review route can request a human process but cannot faithfully calculate its possible dispositions or conditional finality."
+    },
+    {
+      "id": "PX15",
+      "requirement": "Concurrent emergency/trade-review powers and dispute boundaries",
+      "support": "UNSUPPORTED",
+      "classification": "C",
+      "basis": "Rulebook Rules 2.8-2.9, 4.6-4.7, 5.2(f), Chapter 12. Term/expiration changes and exceptional settlement actions exceed the fixed spec. Order disputes/arbitration must not be substituted for a Rule 5.2 appeal."
+    }
+  ],
+  "gate": {
+    "passed": false,
+    "rule": "Every settlement-material requirement must be SUPPORTED EXACTLY or SUPPORTED WITH JUSTIFIED GENERAL EXTENSION before VERIFIED_SUPPORTED_REAL_FIXTURE is permitted.",
+    "extensionImplemented": false,
+    "reason": "Adding VOIDED and per-date fallback would still leave material discretionary allocation, changed terms, partial-data sufficiency and conditional post-settlement finality unrepresented. No narrow extension establishes full support."
+  }
+}

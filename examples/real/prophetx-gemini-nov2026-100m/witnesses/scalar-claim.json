@@ -1,0 +1,47 @@
+{
+  "schemaVersion": "1.0",
+  "id": "synthetic-prophetx-scalar-boundary-witness",
+  "title": "SYNTHETIC scalar projection; NOT the ProphetX contract",
+  "description": "A test-only scalar claim sharing the documented strict USD threshold and a conditional clock envelope. It cannot express per-trade-date source fallback, required data eligibility, conditional collateral return, or Rule 5.2. The end is a half-open explanatory envelope, not a transcription of the reported-trade-date rule. Monday-Friday cutoff and latest settlement instants are assumptions for this witness only.",
+  "reference": {
+    "entityId": "synthetic-titan",
+    "entityName": "Synthetic source-aggregation witness",
+    "metricId": "synthetic-monthly-notional",
+    "metricName": "Synthetic precomputed monthly USD notional",
+    "metricDefinition": "An assumed already computed monthly scalar. This test does not verify Gemini report rows, reported trade dates, completeness, settlement multipliers, category aggregation, or the real contract.",
+    "definitionId": "synthetic-scalar-v1",
+    "unit": "USD",
+    "reportingPeriod": {
+      "id": "synthetic-november-2026-envelope",
+      "start": "2026-10-31T21:00:00Z",
+      "end": "2026-11-30T22:00:00Z",
+      "calendar": "synthetic-conditional-America-New_York-envelope"
+    }
+  },
+  "condition": { "comparator": ">", "strike": "100000000" },
+  "sources": [
+    { "id": "primary", "name": "SYNTHETIC primary scalar", "priority": 1 },
+    { "id": "secondary", "name": "SYNTHETIC secondary scalar", "priority": 2 },
+    { "id": "tertiary", "name": "SYNTHETIC tertiary scalar", "priority": 3 }
+  ],
+  "timing": {
+    "observationStart": "2026-10-31T21:00:00Z",
+    "observationEnd": "2026-11-30T22:00:00Z",
+    "publicationDeadline": "2026-12-02T22:00:00Z",
+    "determinationAt": "2026-12-02T22:00:00Z",
+    "settlementAt": "2026-12-03T22:00:00Z"
+  },
+  "policies": {
+    "sourceConflict": "precedence",
+    "corrections": "freezeAtDetermination",
+    "units": "exact"
+  },
+  "payout": { "currency": "USD", "yes": "1", "no": "0" },
+  "provenance": {
+    "kind": "synthetic",
+    "publisher": "ClaimLint contributors",
+    "documentTitle": "Synthetic scalar witness for the ProphetX model boundary",
+    "normalizedFields": ["No field establishes a verified real ClaimSpec"],
+    "interpretation": "Only a scalar projection. Fixed instants assume the filing's expected ET envelope and two following weekdays, without establishing a governing holiday calendar. SettlementAt is an assumed test time. Source precedence is whole-period and deliberately cannot implement the documented per-trade-date fallback. Missing-data, review and void rules remain absent; no result from this witness is a real contract determination."
+  }
+}

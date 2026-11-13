@@ -1,0 +1,80 @@
+[
+  {
+    "file": "zoom-fy2026-10k.html",
+    "url": "https://www.sec.gov/Archives/edgar/data/1585521/000158552126000030/zm-20260131.htm",
+    "retrievedAt": "2026-11-12T14:51:19.915829Z",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "file": "zoom-fy2027-q2-10q.html",
+    "url": "https://www.sec.gov/Archives/edgar/data/1585521/000158552126000121/zm-20260731.htm",
+    "retrievedAt": "2026-11-12T14:51:20.040287Z",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "file": "zoom-fy2027-q2-release.html",
+    "url": "https://www.sec.gov/Archives/edgar/data/1585521/000158552126000119/zm-20260731ex991.htm",
+    "retrievedAt": "2026-11-12T14:51:20.135122Z",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "file": "zoom-fy2026-q4-release.html",
+    "url": "https://www.sec.gov/Archives/edgar/data/1585521/000158552126000026/zm-20260225ex991.htm",
+    "retrievedAt": "2026-11-12T14:51:20.198561Z",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "file": "zoom-fy2027-q2-release.pdf",
+    "url": "https://investors.zoom.us/node/14596/pdf",
+    "retrievedAt": "2026-11-12T14:51:49.880962Z",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "file": "zoom-fy2026-q4-release.pdf",
+    "url": "https://investors.zoom.us/node/14151/pdf",
+    "retrievedAt": "2026-11-12T14:51:49.949581Z",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "file": "zoom-fy2027-q2-10q.pdf",
+    "url": "https://investors.zoom.us/static-files/9d9a1071-5cfd-4371-bf6f-506eed0f5cea",
+    "retrievedAt": "2026-11-12T14:53:18.890931Z",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "file": "zoom-fy2026-annual.pdf",
+    "url": "https://investors.zoom.us/static-files/810de4a4-79cc-4a62-9c5e-c6b8b8c4765d",
+    "retrievedAt": "2026-11-12T14:53:19.124047Z",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "file": "zoom-fy2027-q2-release.pdf",
+    "url": "https://investors.zoom.us/node/14596/pdf",
+    "retrievedAt": "2026-11-12T14:53:19.196232Z",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "file": "zoom-fy2026-q4-release.pdf",
+    "url": "https://investors.zoom.us/node/14151/pdf",
+    "retrievedAt": "2026-11-12T14:53:19.337643Z",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "file": "zoom-fy2027-q2-10q.pdf",
+    "url": "https://investors.zoom.com/static-files/9d9a1071-5cfd-4371-bf6f-506eed0f5cea",
+    "retrievedAt": "2026-11-12T14:53:49.006888Z",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "file": "zoom-fy2027-q2-release.pdf",
+    "url": "https://investors.zoom.com/node/14596/pdf",
+    "retrievedAt": "2026-11-12T14:53:50.351932Z",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "file": "zoom-fy2026-annual.pdf",
+    "url": "https://investors.zoom.com/static-files/810de4a4-79cc-4a62-9c5e-c6b8b8c4765d",
+    "retrievedAt": "2026-11-12T14:53:51.729994Z",
+    "error": "HTTP Error 403: Forbidden"
+  }
+]

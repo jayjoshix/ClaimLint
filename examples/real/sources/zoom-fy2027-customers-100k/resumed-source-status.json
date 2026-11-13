@@ -1,0 +1,32 @@
+{
+  "preparedOn": "2026-11-13",
+  "sourceAccessRestored": true,
+  "originalBodiesArchived": true,
+  "originalResponseCount": 9,
+  "manifests": [
+    "zoom-original-manifest.json",
+    "kalshi-annualkpi-s3-manifest.json",
+    "kalshi-annualkpi-cftc-manifest.json",
+    "rulebook-original-manifest.json"
+  ],
+  "verified": [
+    "Original Zoom annual report, Q2 10-Q complete filing, annual/Q4 and Q2 earnings-release complete filings",
+    "Publisher-hosted three-page ANNUALKPI full family clauses; regional copy is byte-identical",
+    "Historical 2025 CFTC ANNUALKPI certification; text differs from retrieved publisher version",
+    "Historical November 2024 Kalshi rulebook filing and March 2026 review-rule amendment"
+  ],
+  "stillUnverified": [
+    "Original full market page and market/series API bodies",
+    "Assets-host endpoint byte equivalence; S3 counterpart was retrieved instead",
+    "Exact binding of date and source parameters/amendments to this particular market",
+    "Complete governing rulebook version and its applicability"
+  ],
+  "modelBoundary": "First official publication, ranges/precision, reporting-entity substitution, dynamic expiry and discretionary fair-price allocation cannot be silently encoded using the existing fixed v1 policies.",
+  "scopeDecision": "Keep a source-linked incomplete draft and explicit model-boundary witness. Do not expand the core or invent policies solely to make the fixture fit.",
+  "classification": {
+    "A": "not established",
+    "B": "bound terms and governing version uncertainty",
+    "C": "documented model limitations",
+    "D": "no new engine bug asserted"
+  }
+}

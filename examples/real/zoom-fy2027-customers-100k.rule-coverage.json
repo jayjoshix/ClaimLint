@@ -1,0 +1,146 @@
+{
+  "artifactKind": "source-linked-contract-family-coverage-not-executable-ClaimSpec",
+  "marketTicker": "KXZMA-27FEBCUST100K-4800",
+  "preparedOn": "2026-11-13",
+  "bindingStatus": "The ANNUALKPI assets link was not independently recovered from a complete market response. A same-named official S3 document was retrieved. Exact bound parameters, assets-byte equivalence, applicable amendments, and governing rulebook version remain unverified.",
+  "familyTerms": {
+    "referencedUrl": "https://assets.kalshi.com/contract_terms/ANNUALKPI.pdf",
+    "retrievedUrl": "https://kalshi-public-docs.s3.amazonaws.com/contract_terms/ANNUALKPI.pdf",
+    "sourceFile": "sources/zoom-fy2027-customers-100k/kalshi-annualkpi-s3.pdf",
+    "sha256": "eeb8ad625303ec4f16adb2755e55baabf659ec42fbb8fcbe5ec586758fe56ec6",
+    "pages": 3,
+    "versionWarning": "PDF metadata creation time is not a legal effective date. The retrieved three-page template differs materially from Appendix A in the archived 2025 certification; do not substitute the historical text."
+  },
+  "sourceAgenciesAsListed": [
+    "Specified company",
+    "Its official investor-relations website",
+    "Federal financial regulators",
+    "The New York Times",
+    "Associated Press",
+    "Bloomberg News",
+    "Reuters",
+    "The Wall Street Journal",
+    "Financial Times",
+    "CNBC",
+    "Fox Business",
+    "MarketWatch",
+    "Barron's",
+    "Yahoo Finance",
+    "Seeking Alpha"
+  ],
+  "reportingHierarchy": [
+    {
+      "priority": 1,
+      "localEvidenceChannelId": "zoom-earnings-release",
+      "description": "Earnings press release"
+    },
+    {
+      "priority": 2,
+      "localEvidenceChannelId": "zoom-prepared-remarks",
+      "description": "Prepared earnings-call remarks"
+    },
+    {
+      "priority": 3,
+      "localEvidenceChannelId": "zoom-concurrent-presentation",
+      "description": "Investor presentation published concurrently with earnings"
+    },
+    {
+      "priority": 4,
+      "localEvidenceChannelId": "zoom-company-qa",
+      "description": "Earnings-call Q&A, only a specific number stated by a company representative"
+    },
+    {
+      "priority": 5,
+      "localEvidenceChannelId": "zoom-government-filing",
+      "description": "Government filings"
+    }
+  ],
+  "authorityWarning": "Agency membership is not the same axis as disclosure-type precedence. Fiscal.ai appears in the market summary but not in the retrieved family agency list. Do not make it a priority-1 replacement for the company's official report.",
+  "clauses": [
+    {
+      "id": "strict-above",
+      "sourcePages": [1],
+      "documented": "Above is strict greater-than unless the Exchange specifies otherwise.",
+      "mapping": "condition.comparator > and strike 4800",
+      "classification": "SUPPORTED_NUMERIC_CLAUSE"
+    },
+    {
+      "id": "annual-company-report",
+      "sourcePages": [1, 2],
+      "documented": "The metric must be officially reported by the company for the specified fiscal year. Third-party derived values do not qualify. Partial-year figures do not qualify unless specified otherwise.",
+      "mapping": "count, entity/metric/period identifiers; source eligibility still requires faithful normalization",
+      "classification": "PARTIAL"
+    },
+    {
+      "id": "first-official-report",
+      "sourcePages": [2],
+      "documented": "First official publication governs. Subsequent corrections/restatements after initial reporting do not change resolution; a separate quarterly-sum path can include intra-year revisions if annual reporting is absent.",
+      "mapping": null,
+      "classification": "C",
+      "reason": "Existing correction policies freeze at predetermined times or route revisions to review. None selects the first official report dynamically. Summing quarterly customer snapshots would also be economically invalid for this specific period-end count."
+    },
+    {
+      "id": "numeric-hierarchy",
+      "sourcePages": [2],
+      "documented": "A specific number takes precedence over vague wording regardless of reporting hierarchy. Disagreeing specific numbers use the five-level disclosure hierarchy.",
+      "mapping": "Sources can approximate the specific-number disclosure channels only; full conditional authority is not represented.",
+      "classification": "C"
+    },
+    {
+      "id": "ranges",
+      "sourcePages": [2],
+      "documented": "A reported closed range uses its midpoint. An exclusively open range resolves Yes only if sufficient to establish Yes; otherwise No.",
+      "mapping": null,
+      "classification": "C",
+      "reason": "EvidenceObservation represents a single exact value and cannot retain the original range/precision semantics."
+    },
+    {
+      "id": "same-report-conflict",
+      "sourcePages": [2],
+      "documented": "Multiple differing values within one report may lead to Rule 7.1 payout determination.",
+      "mapping": null,
+      "classification": "C",
+      "reason": "The v1 source-conflict policy cannot simultaneously express numeric hierarchy and discretionary same-report review."
+    },
+    {
+      "id": "metric-discontinuation",
+      "sourcePages": [2],
+      "documented": "If the company stops reporting the metric, payout uses the last fair market price determined by the Exchange.",
+      "mapping": null,
+      "classification": "C",
+      "reason": "A fixed yes/no payout or an automatic review route is not equivalent to an exchange-determined fair-price allocation."
+    },
+    {
+      "id": "reporting-entity-substitution",
+      "sourcePages": [1],
+      "documented": "Following a merger, acquisition, or restructuring, use the reporting entity that publishes the year's earnings.",
+      "mapping": null,
+      "classification": "C",
+      "reason": "Static entity identity and fixed corporate-action outcomes cannot express reporting-entity substitution."
+    },
+    {
+      "id": "timing",
+      "sourcePages": [1, 2, 3],
+      "documented": "The template sets the latest date at least one year after expected fiscal-year end, expiration at 10 a.m. ET, earlier expiry under Rule 7.2 on a qualifying event, and settlement no later than the next day unless under Rule 7.1 review.",
+      "mapping": null,
+      "classification": "B_AND_C",
+      "reason": "The market summary's May 25, 2027 latest close and projected payment are not verified bound expiration/determination/settlement terms. Dynamic expiry and review do not fit mandatory fixed timeline fields. The displayed close must not silently replace the template's unbound date."
+    },
+    {
+      "id": "normal-payout",
+      "sourcePages": [2],
+      "documented": "Ordinary settlement value is USD 1.",
+      "mapping": "Ordinary yes-side payout: yes 1, no 0; not a representation of all exceptional allocations.",
+      "classification": "PARTIAL"
+    },
+    {
+      "id": "review-and-missing-expiration-value",
+      "sourcePages": [3],
+      "documented": "Kalshi may initiate pre-settlement outcome review at its discretion and may determine payouts under Rule 7.1 when the expiration value cannot be determined.",
+      "mapping": null,
+      "classification": "B_AND_C",
+      "reason": "An automatic REVIEW_REQUIRED policy would strengthen a discretionary route into a mandatory one. The applicable complete Rule 7.1/version remains unverified."
+    }
+  ],
+  "conclusion": "The full family clauses reveal documented behavior outside ClaimSpecV1. Do not turn missing model support into a category-A contractual omission or a passing real settlement specification. No engine expansion was made."
+}

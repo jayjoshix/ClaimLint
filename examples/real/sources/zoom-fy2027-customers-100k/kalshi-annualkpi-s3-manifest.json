@@ -1,0 +1,22 @@
+[
+  {
+    "file": "kalshi-annualkpi-s3.pdf",
+    "url": "https://kalshi-public-docs.s3.amazonaws.com/contract_terms/ANNUALKPI.pdf",
+    "retrievedAt": "2026-11-13T02:42:17.455680+00:00",
+    "status": 200,
+    "bytes": 26149,
+    "sha256": "eeb8ad625303ec4f16adb2755e55baabf659ec42fbb8fcbe5ec586758fe56ec6",
+    "contentType": "application/pdf",
+    "bodyPreserved": true
+  },
+  {
+    "file": "kalshi-annualkpi-regional-s3.pdf",
+    "url": "https://kalshi-public-docs.s3.us-east-1.amazonaws.com/contract_terms/ANNUALKPI.pdf",
+    "retrievedAt": "2026-11-13T02:42:18.488550+00:00",
+    "status": 200,
+    "bytes": 26149,
+    "sha256": "eeb8ad625303ec4f16adb2755e55baabf659ec42fbb8fcbe5ec586758fe56ec6",
+    "contentType": "application/pdf",
+    "bodyPreserved": true
+  }
+]

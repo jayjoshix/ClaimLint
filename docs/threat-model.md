@@ -73,3 +73,10 @@ legal interpretation, oracle governance, payment execution, pricing, trading,
 portfolio risk, arbitrary derivatives, discretionary amended terms, regulatory
 approval, and formal proof. Real-fixture normalization must independently record
 the source version, incorporated documents, and interpretation choices.
+
+A further risk is mislabelling an incomplete projection as a supported real
+contract. An offline aggregate can be numerically correct while omitting the
+source-substitution and exceptional-outcome semantics the verifier is meant to
+exercise. The [ProphetX support assessment](../examples/real/prophetx-gemini-nov2026-100m/support-matrix.md)
+keeps these limits visible: its unsupported draft cannot produce a passing
+real-contract report, and synthetic witness results are not settlement verdicts.

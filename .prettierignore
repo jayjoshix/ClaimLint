@@ -3,3 +3,9 @@ dist
 pnpm-lock.yaml
 coverage
 .cache
+# Optional local publisher archives must retain their original bytes.
+examples/real/sources/**/*.pdf
+examples/real/sources/**/*.txt
+examples/real/sources/**/*.html
+examples/real/prophetx-gemini-nov2026-100m/sources/*
+!examples/real/prophetx-gemini-nov2026-100m/sources/*-manifest.json

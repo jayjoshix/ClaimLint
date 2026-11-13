@@ -1,0 +1,593 @@
+{
+  "artifactKind": "incomplete-real-contract-normalization-assessment",
+  "engineVersion": "0.1.1",
+  "notARealContractSettlementVerdict": true,
+  "ruleCoverage": "zoom-fy2027-customers-100k.rule-coverage.json",
+  "verifiedCompanyMetric": "zoom-fy2027-customers-100k.kpi.json",
+  "classification": {
+    "A": {
+      "reason": "No contractual ambiguity can be established without missing full and incorporated terms.",
+      "established": false
+    },
+    "B": {
+      "present": true,
+      "reason": "Exact bound date/source association, assets-host byte equivalence, and the complete applicable rulebook version remain unverified. Publisher-hosted full ANNUALKPI family clauses are archived."
+    },
+    "C": {
+      "present": true,
+      "reason": "Documented first-report finality, conditional precision/authority, ranges, fair-price allocation, reporting-entity substitution and dynamic expiry do not fit existing v1 policies. Period instants, sources and timing remain unbound rather than invented."
+    },
+    "D": {
+      "reason": "No engine bug is asserted. Attributing draft errors to Kalshi would be a false attribution.",
+      "established": false
+    }
+  },
+  "validation": {
+    "args": ["validate", "examples/real/zoom-fy2027-customers-100k.draft.json"],
+    "output": {
+      "engineVersion": "0.1.1",
+      "status": "INVALID_SPEC",
+      "valid": false,
+      "issues": [
+        {
+          "code": "CL001",
+          "path": "reference.reportingPeriod.end",
+          "message": "Invalid input: expected string, received undefined"
+        },
+        {
+          "code": "CL001",
+          "path": "reference.reportingPeriod.start",
+          "message": "Invalid input: expected string, received undefined"
+        },
+        {
+          "code": "CL001",
+          "path": "sources",
+          "message": "Invalid input: expected array, received undefined"
+        },
+        {
+          "code": "CL001",
+          "path": "timing",
+          "message": "Invalid input: expected object, received undefined"
+        }
+      ]
+    },
+    "exit": 2
+  },
+  "resolutions": [
+    {
+      "args": [
+        "resolve",
+        "examples/real/zoom-fy2027-customers-100k.draft.json",
+        "--evidence",
+        "examples/real/zoom-fy2027-customers-100k.evidence/above.json",
+        "--as-of",
+        "2027-03-02T00:00:00Z"
+      ],
+      "file": "above.json",
+      "output": {
+        "engineVersion": "0.1.1",
+        "status": "INVALID_SPEC",
+        "terminal": false,
+        "reasonCodes": ["SPEC_INVALID"],
+        "evidenceUsed": [],
+        "trace": [
+          {
+            "code": "SPEC_ISSUE",
+            "data": {
+              "code": "CL001",
+              "path": "reference.reportingPeriod.end",
+              "message": "Invalid input: expected string, received undefined"
+            }
+          },
+          {
+            "code": "SPEC_ISSUE",
+            "data": {
+              "code": "CL001",
+              "path": "reference.reportingPeriod.start",
+              "message": "Invalid input: expected string, received undefined"
+            }
+          },
+          {
+            "code": "SPEC_ISSUE",
+            "data": {
+              "code": "CL001",
+              "path": "sources",
+              "message": "Invalid input: expected array, received undefined"
+            }
+          },
+          {
+            "code": "SPEC_ISSUE",
+            "data": {
+              "code": "CL001",
+              "path": "timing",
+              "message": "Invalid input: expected object, received undefined"
+            }
+          },
+          {
+            "code": "SPEC_INVALID",
+            "data": {}
+          }
+        ]
+      },
+      "exit": 2
+    },
+    {
+      "args": [
+        "resolve",
+        "examples/real/zoom-fy2027-customers-100k.draft.json",
+        "--evidence",
+        "examples/real/zoom-fy2027-customers-100k.evidence/equal.json",
+        "--as-of",
+        "2027-03-02T00:00:00Z"
+      ],
+      "file": "equal.json",
+      "output": {
+        "engineVersion": "0.1.1",
+        "status": "INVALID_SPEC",
+        "terminal": false,
+        "reasonCodes": ["SPEC_INVALID"],
+        "evidenceUsed": [],
+        "trace": [
+          {
+            "code": "SPEC_ISSUE",
+            "data": {
+              "code": "CL001",
+              "path": "reference.reportingPeriod.end",
+              "message": "Invalid input: expected string, received undefined"
+            }
+          },
+          {
+            "code": "SPEC_ISSUE",
+            "data": {
+              "code": "CL001",
+              "path": "reference.reportingPeriod.start",
+              "message": "Invalid input: expected string, received undefined"
+            }
+          },
+          {
+            "code": "SPEC_ISSUE",
+            "data": {
+              "code": "CL001",
+              "path": "sources",
+              "message": "Invalid input: expected array, received undefined"
+            }
+          },
+          {
+            "code": "SPEC_ISSUE",
+            "data": {
+              "code": "CL001",
+              "path": "timing",
+              "message": "Invalid input: expected object, received undefined"
+            }
+          },
+          {
+            "code": "SPEC_INVALID",
+            "data": {}
+          }
+        ]
+      },
+      "exit": 2
+    },
+    {
+      "args": [
+        "resolve",
+        "examples/real/zoom-fy2027-customers-100k.draft.json",
+        "--evidence",
+        "examples/real/zoom-fy2027-customers-100k.evidence/below.json",
+        "--as-of",
+        "2027-03-02T00:00:00Z"
+      ],
+      "file": "below.json",
+      "output": {
+        "engineVersion": "0.1.1",
+        "status": "INVALID_SPEC",
+        "terminal": false,
+        "reasonCodes": ["SPEC_INVALID"],
+        "evidenceUsed": [],
+        "trace": [
+          {
+            "code": "SPEC_ISSUE",
+            "data": {
+              "code": "CL001",
+              "path": "reference.reportingPeriod.end",
+              "message": "Invalid input: expected string, received undefined"
+            }
+          },
+          {
+            "code": "SPEC_ISSUE",
+            "data": {
+              "code": "CL001",
+              "path": "reference.reportingPeriod.start",
+              "message": "Invalid input: expected string, received undefined"
+            }
+          },
+          {
+            "code": "SPEC_ISSUE",
+            "data": {
+              "code": "CL001",
+              "path": "sources",
+              "message": "Invalid input: expected array, received undefined"
+            }
+          },
+          {
+            "code": "SPEC_ISSUE",
+            "data": {
+              "code": "CL001",
+              "path": "timing",
+              "message": "Invalid input: expected object, received undefined"
+            }
+          },
+          {
+            "code": "SPEC_INVALID",
+            "data": {}
+          }
+        ]
+      },
+      "exit": 2
+    },
+    {
+      "args": [
+        "resolve",
+        "examples/real/zoom-fy2027-customers-100k.draft.json",
+        "--evidence",
+        "examples/real/zoom-fy2027-customers-100k.evidence/unavailable.json",
+        "--as-of",
+        "2026-11-13T00:00:00Z"
+      ],
+      "file": "unavailable.json",
+      "output": {
+        "engineVersion": "0.1.1",
+        "status": "INVALID_SPEC",
+        "terminal": false,
+        "reasonCodes": ["SPEC_INVALID"],
+        "evidenceUsed": [],
+        "trace": [
+          {
+            "code": "SPEC_ISSUE",
+            "data": {
+              "code": "CL001",
+              "path": "reference.reportingPeriod.end",
+              "message": "Invalid input: expected string, received undefined"
+            }
+          },
+          {
+            "code": "SPEC_ISSUE",
+            "data": {
+              "code": "CL001",
+              "path": "reference.reportingPeriod.start",
+              "message": "Invalid input: expected string, received undefined"
+            }
+          },
+          {
+            "code": "SPEC_ISSUE",
+            "data": {
+              "code": "CL001",
+              "path": "sources",
+              "message": "Invalid input: expected array, received undefined"
+            }
+          },
+          {
+            "code": "SPEC_ISSUE",
+            "data": {
+              "code": "CL001",
+              "path": "timing",
+              "message": "Invalid input: expected object, received undefined"
+            }
+          },
+          {
+            "code": "SPEC_INVALID",
+            "data": {}
+          }
+        ]
+      },
+      "exit": 2
+    },
+    {
+      "args": [
+        "resolve",
+        "examples/real/zoom-fy2027-customers-100k.draft.json",
+        "--evidence",
+        "examples/real/zoom-fy2027-customers-100k.evidence/later-publication.json",
+        "--as-of",
+        "2027-06-02T00:00:00Z"
+      ],
+      "file": "later-publication.json",
+      "output": {
+        "engineVersion": "0.1.1",
+        "status": "INVALID_SPEC",
+        "terminal": false,
+        "reasonCodes": ["SPEC_INVALID"],
+        "evidenceUsed": [],
+        "trace": [
+          {
+            "code": "SPEC_ISSUE",
+            "data": {
+              "code": "CL001",
+              "path": "reference.reportingPeriod.end",
+              "message": "Invalid input: expected string, received undefined"
+            }
+          },
+          {
+            "code": "SPEC_ISSUE",
+            "data": {
+              "code": "CL001",
+              "path": "reference.reportingPeriod.start",
+              "message": "Invalid input: expected string, received undefined"
+            }
+          },
+          {
+            "code": "SPEC_ISSUE",
+            "data": {
+              "code": "CL001",
+              "path": "sources",
+              "message": "Invalid input: expected array, received undefined"
+            }
+          },
+          {
+            "code": "SPEC_ISSUE",
+            "data": {
+              "code": "CL001",
+              "path": "timing",
+              "message": "Invalid input: expected object, received undefined"
+            }
+          },
+          {
+            "code": "SPEC_INVALID",
+            "data": {}
+          }
+        ]
+      },
+      "exit": 2
+    },
+    {
+      "args": [
+        "resolve",
+        "examples/real/zoom-fy2027-customers-100k.draft.json",
+        "--evidence",
+        "examples/real/zoom-fy2027-customers-100k.evidence/wrong-period.json",
+        "--as-of",
+        "2027-03-02T00:00:00Z"
+      ],
+      "file": "wrong-period.json",
+      "output": {
+        "engineVersion": "0.1.1",
+        "status": "INVALID_SPEC",
+        "terminal": false,
+        "reasonCodes": ["SPEC_INVALID"],
+        "evidenceUsed": [],
+        "trace": [
+          {
+            "code": "SPEC_ISSUE",
+            "data": {
+              "code": "CL001",
+              "path": "reference.reportingPeriod.end",
+              "message": "Invalid input: expected string, received undefined"
+            }
+          },
+          {
+            "code": "SPEC_ISSUE",
+            "data": {
+              "code": "CL001",
+              "path": "reference.reportingPeriod.start",
+              "message": "Invalid input: expected string, received undefined"
+            }
+          },
+          {
+            "code": "SPEC_ISSUE",
+            "data": {
+              "code": "CL001",
+              "path": "sources",
+              "message": "Invalid input: expected array, received undefined"
+            }
+          },
+          {
+            "code": "SPEC_ISSUE",
+            "data": {
+              "code": "CL001",
+              "path": "timing",
+              "message": "Invalid input: expected object, received undefined"
+            }
+          },
+          {
+            "code": "SPEC_INVALID",
+            "data": {}
+          }
+        ]
+      },
+      "exit": 2
+    },
+    {
+      "args": [
+        "resolve",
+        "examples/real/zoom-fy2027-customers-100k.draft.json",
+        "--evidence",
+        "examples/real/zoom-fy2027-customers-100k.evidence/correction.json",
+        "--as-of",
+        "2027-03-03T00:00:00Z"
+      ],
+      "file": "correction.json",
+      "output": {
+        "engineVersion": "0.1.1",
+        "status": "INVALID_SPEC",
+        "terminal": false,
+        "reasonCodes": ["SPEC_INVALID"],
+        "evidenceUsed": [],
+        "trace": [
+          {
+            "code": "SPEC_ISSUE",
+            "data": {
+              "code": "CL001",
+              "path": "reference.reportingPeriod.end",
+              "message": "Invalid input: expected string, received undefined"
+            }
+          },
+          {
+            "code": "SPEC_ISSUE",
+            "data": {
+              "code": "CL001",
+              "path": "reference.reportingPeriod.start",
+              "message": "Invalid input: expected string, received undefined"
+            }
+          },
+          {
+            "code": "SPEC_ISSUE",
+            "data": {
+              "code": "CL001",
+              "path": "sources",
+              "message": "Invalid input: expected array, received undefined"
+            }
+          },
+          {
+            "code": "SPEC_ISSUE",
+            "data": {
+              "code": "CL001",
+              "path": "timing",
+              "message": "Invalid input: expected object, received undefined"
+            }
+          },
+          {
+            "code": "SPEC_INVALID",
+            "data": {}
+          }
+        ]
+      },
+      "exit": 2
+    },
+    {
+      "args": [
+        "resolve",
+        "examples/real/zoom-fy2027-customers-100k.draft.json",
+        "--evidence",
+        "examples/real/zoom-fy2027-customers-100k.evidence/source-conflict.json",
+        "--as-of",
+        "2027-03-02T00:00:00Z"
+      ],
+      "file": "source-conflict.json",
+      "output": {
+        "engineVersion": "0.1.1",
+        "status": "INVALID_SPEC",
+        "terminal": false,
+        "reasonCodes": ["SPEC_INVALID"],
+        "evidenceUsed": [],
+        "trace": [
+          {
+            "code": "SPEC_ISSUE",
+            "data": {
+              "code": "CL001",
+              "path": "reference.reportingPeriod.end",
+              "message": "Invalid input: expected string, received undefined"
+            }
+          },
+          {
+            "code": "SPEC_ISSUE",
+            "data": {
+              "code": "CL001",
+              "path": "reference.reportingPeriod.start",
+              "message": "Invalid input: expected string, received undefined"
+            }
+          },
+          {
+            "code": "SPEC_ISSUE",
+            "data": {
+              "code": "CL001",
+              "path": "sources",
+              "message": "Invalid input: expected array, received undefined"
+            }
+          },
+          {
+            "code": "SPEC_ISSUE",
+            "data": {
+              "code": "CL001",
+              "path": "timing",
+              "message": "Invalid input: expected object, received undefined"
+            }
+          },
+          {
+            "code": "SPEC_INVALID",
+            "data": {}
+          }
+        ]
+      },
+      "exit": 2
+    }
+  ],
+  "check": {
+    "args": [
+      "check",
+      "examples/real/zoom-fy2027-customers-100k.draft.json",
+      "--runs",
+      "1000",
+      "--seed",
+      "18472941"
+    ],
+    "output": {
+      "engineVersion": "0.1.1",
+      "specDigest": "a5095004c93e460cd83d94824ced2f7358ee4fab36a4a41b0b50d581cd67bcde",
+      "verdict": "INVALID_SPEC",
+      "validation": {
+        "valid": false,
+        "issues": [
+          {
+            "code": "CL001",
+            "path": "reference.reportingPeriod.end",
+            "message": "Invalid input: expected string, received undefined"
+          },
+          {
+            "code": "CL001",
+            "path": "reference.reportingPeriod.start",
+            "message": "Invalid input: expected string, received undefined"
+          },
+          {
+            "code": "CL001",
+            "path": "sources",
+            "message": "Invalid input: expected array, received undefined"
+          },
+          {
+            "code": "CL001",
+            "path": "timing",
+            "message": "Invalid input: expected object, received undefined"
+          }
+        ]
+      },
+      "namedScenarios": [],
+      "generated": {
+        "requestedRuns": 1000,
+        "executedRuns": 0,
+        "seed": 18472941,
+        "checks": []
+      },
+      "findings": [
+        {
+          "code": "CL001",
+          "severity": "ERROR",
+          "property": "SPEC_VALIDITY",
+          "summary": "Invalid input: expected string, received undefined",
+          "explanation": "Invalid specification at reference.reportingPeriod.end."
+        },
+        {
+          "code": "CL001",
+          "severity": "ERROR",
+          "property": "SPEC_VALIDITY",
+          "summary": "Invalid input: expected string, received undefined",
+          "explanation": "Invalid specification at reference.reportingPeriod.start."
+        },
+        {
+          "code": "CL001",
+          "severity": "ERROR",
+          "property": "SPEC_VALIDITY",
+          "summary": "Invalid input: expected array, received undefined",
+          "explanation": "Invalid specification at sources."
+        },
+        {
+          "code": "CL001",
+          "severity": "ERROR",
+          "property": "SPEC_VALIDITY",
+          "summary": "Invalid input: expected object, received undefined",
+          "explanation": "Invalid specification at timing."
+        }
+      ],
+      "disclaimer": "No counterexample found is not a formal proof of settlement correctness. Results cover only the listed scenarios and generated property cases; REVIEW_REQUIRED routes still require an external process."
+    },
+    "exit": 2
+  }
+}

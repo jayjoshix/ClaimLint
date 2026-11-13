@@ -1,0 +1,18 @@
+{
+  "artifactKind": "checksums-of-local-research-records-only",
+  "warning": "These hashes cover selected normalized notes and retrieval logs only. Archived publisher originals have separate per-document retrieval manifests and byte hashes.",
+  "files": [
+    {
+      "sha256": "774e47e342a8daecd0b282a14a4399fa3e4110c102212dfa82cc4ea15825d351",
+      "file": "discovery-extract.json"
+    },
+    {
+      "sha256": "a95569714da58e27972e01ee7219aff5b0370f472dee36ffc0d1cd0e2a738ae5",
+      "file": "retrieval-status.json"
+    },
+    {
+      "sha256": "ea0d6894c24e902542e5ae130d7163ba261edb22330a4df7dab83a6d8e1e0de1",
+      "file": "zoom-source-retrieval.json"
+    }
+  ]
+}

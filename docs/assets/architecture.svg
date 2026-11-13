@@ -1,0 +1,197 @@
+<svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="1000"
+  height="750"
+  viewBox="0 0 1000 750"
+  role="img"
+  aria-labelledby="title description"
+>
+  <title id="title">ClaimLint execution and governance boundary</title>
+  <desc id="description">
+    Contract specification, evidence and evaluation context enter a pure
+    deterministic resolver, which returns a resolution and audit trace. The
+    adversarial runner constructs evidence and context, checks results against
+    scenarios and properties, and reports shrunk counterexamples. Source
+    replacement by discretionary selection, specification modification,
+    emergency action, operator-initiated review, fair allocation and
+    discretionary overrides remain outside the executable model.
+  </desc>
+  <style>
+    text {
+      font-family:
+        system-ui,
+        -apple-system,
+        'Segoe UI',
+        sans-serif;
+      fill: #1f2328;
+    }
+    .surface {
+      fill: #ffffff;
+    }
+    .frame {
+      fill: none;
+      stroke: #8c959f;
+      stroke-width: 1.5;
+    }
+    .panel {
+      fill: #f6f8fa;
+      stroke: #8c959f;
+      stroke-width: 1.5;
+    }
+    .resolver {
+      fill: #ddf4ff;
+      stroke: #0969da;
+      stroke-width: 1.5;
+    }
+    .heading {
+      font-size: 17px;
+      font-weight: 600;
+    }
+    .label {
+      font-size: 16px;
+      font-weight: 600;
+    }
+    .body {
+      font-size: 15px;
+    }
+    .muted {
+      font-size: 14px;
+      fill: #57606a;
+    }
+    .arrow {
+      fill: none;
+      stroke: #57606a;
+      stroke-width: 1.7;
+      marker-end: url(#arrow);
+    }
+    .branch {
+      fill: none;
+      stroke: #57606a;
+      stroke-width: 1.7;
+    }
+    .arrowhead {
+      fill: #57606a;
+    }
+    .boundary {
+      stroke: #8c959f;
+      stroke-width: 1.5;
+      stroke-dasharray: 6 5;
+    }
+    @media (prefers-color-scheme: dark) {
+      text {
+        fill: #e6edf3;
+      }
+      .surface {
+        fill: #0d1117;
+      }
+      .panel {
+        fill: #161b22;
+        stroke: #8b949e;
+      }
+      .resolver {
+        fill: #132b42;
+        stroke: #58a6ff;
+      }
+      .muted {
+        fill: #b1bac4;
+      }
+      .arrow,
+      .branch {
+        stroke: #b1bac4;
+      }
+      .arrowhead {
+        fill: #b1bac4;
+      }
+    }
+  </style>
+  <defs>
+    <marker
+      id="arrow"
+      viewBox="0 0 10 10"
+      refX="9"
+      refY="5"
+      markerWidth="7"
+      markerHeight="7"
+      orient="auto-start-reverse"
+    >
+      <path class="arrowhead" d="M 0 0 L 10 5 L 0 10 Z" />
+    </marker>
+  </defs>
+  <rect class="surface" width="1000" height="750" />
+  <text class="heading" x="20" y="30">
+    ClaimLint: execute rules, search for counterexamples, retain the boundary
+  </text>
+
+  <rect class="frame" x="20" y="55" width="600" height="485" rx="6" />
+  <text class="heading" x="40" y="84">DETERMINISTIC SETTLEMENT CORE</text>
+
+  <rect class="panel" x="40" y="110" width="170" height="100" rx="5" />
+  <text class="label" x="55" y="139">ClaimSpecV1</text>
+  <text class="body" x="55" y="164">Terms, authority,</text>
+  <text class="body" x="55" y="187">timing and policies</text>
+
+  <rect class="panel" x="230" y="110" width="170" height="100" rx="5" />
+  <text class="label" x="245" y="139">EvidenceSet</text>
+  <text class="body" x="245" y="164">Observations,</text>
+  <text class="body" x="245" y="187">revisions and events</text>
+
+  <rect class="panel" x="420" y="110" width="180" height="100" rx="5" />
+  <text class="label" x="435" y="139">EvaluationContext</text>
+  <text class="body" x="435" y="164">Explicit as-of and</text>
+  <text class="body" x="435" y="187">decision time</text>
+
+  <path class="arrow" d="M125 210 V260 H300 V300" />
+  <path class="arrow" d="M315 210 V300" />
+  <path class="arrow" d="M510 210 V260 H330 V300" />
+
+  <rect class="resolver" x="170" y="300" width="290" height="80" rx="5" />
+  <text class="label" x="190" y="330">Pure deterministic resolver</text>
+  <text class="muted" x="190" y="356">
+    No I/O, implicit clock or randomness
+  </text>
+  <path class="arrow" d="M315 380 V420" />
+  <rect class="panel" x="170" y="420" width="290" height="90" rx="5" />
+  <text class="label" x="190" y="450">Resolution + audit trace</text>
+  <text class="body" x="190" y="476">Status, reasons, evidence, payout*</text>
+  <text class="muted" x="40" y="526">* Payout only for terminal YES / NO</text>
+
+  <rect class="panel" x="660" y="110" width="310" height="140" rx="5" />
+  <text class="heading" x="680" y="140">Adversarial runner</text>
+  <text class="body" x="680" y="168">27 named scenarios</text>
+  <text class="body" x="680" y="193">12 seeded property checks</text>
+  <text class="muted" x="680" y="225">
+    Construct worlds; inspect resolver results
+  </text>
+  <path class="branch" d="M660 170 H635 V235 H315 V210" />
+  <path class="arrow" d="M635 170 H600" />
+  <path class="arrow" d="M315 235 V210" />
+  <path class="arrow" d="M460 465 H640 V230 H660" />
+  <text class="muted" x="478" y="453">Results + traces</text>
+
+  <path class="arrow" d="M815 250 V400" />
+  <text class="muted" x="835" y="311">Check invariants;</text>
+  <text class="muted" x="835" y="334">shrink failures</text>
+  <rect class="panel" x="660" y="400" width="310" height="110" rx="5" />
+  <text class="label" x="680" y="430">Findings + text / JSON reports</text>
+  <text class="body" x="680" y="457">Shrunk counterexamples</text>
+  <text class="muted" x="680" y="483">
+    Seed, replay path and specification digest
+  </text>
+
+  <line class="boundary" x1="20" y1="575" x2="980" y2="575" />
+  <text class="heading" x="40" y="607">GOVERNANCE BOUNDARY</text>
+  <text class="body" x="40" y="633">
+    Deliberately outside ClaimLint v1's executable model; these are not findings
+    of contract defects.
+  </text>
+  <text class="body" x="40" y="675">Discretionary source replacement</text>
+  <text class="body" x="365" y="675">Specification modification</text>
+  <text class="body" x="690" y="675">Emergency action</text>
+  <text class="body" x="40" y="710">
+    Independent operator review initiation
+  </text>
+  <text class="body" x="365" y="710">
+    Fair-price / fair-allocation settlement
+  </text>
+  <text class="body" x="690" y="710">Discretionary outcome override</text>
+</svg>

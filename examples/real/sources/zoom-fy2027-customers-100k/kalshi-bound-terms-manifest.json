@@ -1,0 +1,14 @@
+[
+  {
+    "file": "kalshi-annualkpi.pdf",
+    "url": "https://assets.kalshi.com/contract_terms/ANNUALKPI.pdf",
+    "retrievedAt": "2026-11-13T02:41:24.629152+00:00",
+    "error": "<urlopen error [WinError 10061] No connection could be made because the target machine actively refused it>"
+  },
+  {
+    "file": "rulebook-v1.29-assets.pdf",
+    "url": "https://assets.kalshi.com/regulatory/rulebook/Kalshi%20DCM%20Rulebook%20v.1.29.pdf",
+    "retrievedAt": "2026-11-13T02:41:24.630581+00:00",
+    "error": "<urlopen error [WinError 10061] No connection could be made because the target machine actively refused it>"
+  }
+]

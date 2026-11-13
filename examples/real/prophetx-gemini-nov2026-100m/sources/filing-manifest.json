@@ -1,0 +1,72 @@
+[
+  {
+    "file": "filing-exact-65632.html",
+    "publisher": "Commodity Futures Trading Commission",
+    "url": "https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationProducts/65632",
+    "retrievedAt": "2026-11-13T03:02:46.115544+00:00",
+    "role": "normative-regulatory-record",
+    "status": 200,
+    "bytes": 31214,
+    "sha256": "b9f48240f0a720ed690e7394e4420edf113b63f319e91d79d0d61367207c697e",
+    "contentType": "text/html; charset=utf-8",
+    "finalUrl": "https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationProducts/65632",
+    "title": "CFTC Product Filing 65632 - Will Gemini's event contract notional traded volume exceed $100 million in November 2026?",
+    "documentDate": "2026-10-23"
+  },
+  {
+    "file": "filing-series-65633.html",
+    "publisher": "Commodity Futures Trading Commission",
+    "url": "https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationProducts/65633",
+    "retrievedAt": "2026-11-13T03:02:47.426603+00:00",
+    "role": "normative-regulatory-record",
+    "status": 200,
+    "bytes": 31024,
+    "sha256": "10fa52e9391c16d0546b0d53117b1f13c6e5c0ab79c2f496b1d9a4c8e4a0bf19",
+    "contentType": "text/html; charset=utf-8",
+    "finalUrl": "https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizationProducts/65633",
+    "title": "CFTC Product Filing 65633 \u2014 Gemini Monthly Event Contract Volume Contracts",
+    "documentDate": "2026-10-23"
+  },
+  {
+    "file": "filing-exact-65632-35990.pdf",
+    "publisher": "ProphetX LLC (published by CFTC)",
+    "url": "https://www.cftc.gov/filings/ptc/ptc10232635990.pdf",
+    "retrievedAt": "2026-11-13T03:03:19.305783+00:00",
+    "documentDate": "2026-10-23",
+    "role": "normative-contract-certification",
+    "status": 200,
+    "bytes": 142877,
+    "sha256": "e51b6032818f9d83a4b296fadf7568dc40aec998bbfdc6884a17a7f56f3081ec",
+    "contentType": "application/pdf",
+    "finalUrl": "https://www.cftc.gov/filings/ptc/ptc10232635990.pdf",
+    "title": "ProphetX LLC - Certification Pursuant to CFTC Regulation 40.2(a): Will Gemini's event contract notional traded volume exceed $100 million in November 2026? Event Contract"
+  },
+  {
+    "file": "filing-exact-65632-35992.pdf",
+    "publisher": "ProphetX LLC (published by CFTC)",
+    "url": "https://www.cftc.gov/filings/ptc/ptc10232635992.pdf",
+    "retrievedAt": "2026-11-13T03:03:21.206699+00:00",
+    "documentDate": "2026-10-23",
+    "role": "contextual-confidential-treatment-request",
+    "status": 200,
+    "bytes": 128080,
+    "sha256": "47cd060d50c643406d4c4382f9ed33ed76c67255ea50e35176fc9c65e6110b7d",
+    "contentType": "application/pdf",
+    "finalUrl": "https://www.cftc.gov/filings/ptc/ptc10232635992.pdf",
+    "title": "ProphetX LLC \u2014 FOIA Confidential Treatment Request: Exchange Monthly Notional Volume Event Contracts"
+  },
+  {
+    "file": "filing-series-65633-35996.pdf",
+    "publisher": "ProphetX LLC (published by CFTC)",
+    "url": "https://www.cftc.gov/filings/ptc/ptc10232635996.pdf",
+    "retrievedAt": "2026-11-13T03:03:22.862363+00:00",
+    "documentDate": "2026-10-23",
+    "role": "normative-contract-certification",
+    "status": 200,
+    "bytes": 151281,
+    "sha256": "12ee91e4a4eeb102fbc9316d043c30a3f4fe1e9c131f89759212e2912c2207a5",
+    "contentType": "application/pdf",
+    "finalUrl": "https://www.cftc.gov/filings/ptc/ptc10232635996.pdf",
+    "title": "ProphetX LLC \u2014 Certification of an Event Contract Series Pursuant to CFTC Regulation 40.2(d): Gemini Monthly Event Contract Volume Contracts"
+  }
+]

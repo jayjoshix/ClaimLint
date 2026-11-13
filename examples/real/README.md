@@ -1,6 +1,13 @@
-# Adding a verified real claim
+# Real-contract research and support gate
 
-No real contract fixture is shipped in v1. The official Kalshi templates examined
+Here, a verified supported fixture means its settlement-material terms have a
+source-backed mapping into the executable model. It is an intake classification,
+not formal verification or a claim of legal correctness. Neither current case
+study passes that gate.
+
+## Adding a faithfully supported claim
+
+No fully executable real contract fixture is shipped in v1. The official Kalshi templates examined
 on **2026-11-12** contain unbound parameters, discretionary exceptions, or
 non-numerical criteria beyond the supported model. Silently binding those
 parameters or replacing exchange discretion with invented policies would create
@@ -54,3 +61,40 @@ Suggested sidecar (documentation metadata, not an executable ClaimSpec):
 
 Do not execute a fixture with unresolved `REQUIRED` fields. This placeholder is
 an intake checklist, not a claim that any source has been verified or imported.
+
+## Current real-world research case
+
+[Zoom FY2027 customers over USD 100,000 TTM revenue, Above 4800](zoom-fy2027-customers-100k.provenance.md)
+has a documented discovery record, an intentionally incomplete `.draft.json`,
+and eight explicitly synthetic evidence sets. Original ANNUALKPI family rules,
+the historical CFTC certification and Zoom filings are archived with hashes.
+Those clauses expose genuine first-report, dynamic-expiry, conditional authority
+and fair-price-payout limits in ClaimSpecV1. Exact market binding and the complete
+governing rulebook version remain unverified. Required fields remain unbound
+instead of inventing a valid full specification. Its `INVALID_SPEC` result must
+not be described as a contractual ambiguity or a settlement-safety finding.
+
+## ProphetX / Gemini volume support assessment
+
+[CFTC product filing 65632](prophetx-gemini-nov2026-100m/provenance.md), the November
+2026 USD 100m Gemini Titan volume contract, was assessed together with the October
+23 series certification and Rulebook v4.0. The exact and series public attachments,
+dated Rulebook, version corroboration and Gemini explanatory sources are archived
+with retrieval metadata and digests. Confidential compliance appendices were not
+public; their contents are not inferred.
+
+This case also remains **unsupported**. Its [gate](prophetx-gemini-nov2026-100m/support-matrix.md)
+records per-trade-date source composition, conditional collateral return and Rule
+5.2 settlement action/finality requirements that a scalar binary claim with a
+fixed cutoff does not fully express. A small VOID extension alone would not
+establish support. No core changes were made. The incomplete draft's CLI results
+and clearly synthetic clause/model-boundary witnesses are preserved separately;
+passing a witness does not verify the whole real contract.
+
+## Source distribution
+
+Public research records include provenance, hashes, source URLs and synthetic
+witnesses. Complete publisher bodies remain in ignored local archives and are
+excluded from npm; they are not relicensed by this project. Tests explicitly
+skip archive completeness when optional local copies are absent. See the
+[source archive policy](../../docs/source-archives.md).

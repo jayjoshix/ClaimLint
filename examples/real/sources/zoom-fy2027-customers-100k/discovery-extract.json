@@ -1,0 +1,70 @@
+{
+  "artifactKind": "manually-normalized-research-extract",
+  "recordScope": "Initial discovery record; successful later archival and verified company facts are recorded in resumed-source-status.json and the original-source manifests.",
+  "isRawSourceSnapshot": false,
+  "retrievedOn": "2026-11-12",
+  "preparedOn": "2026-11-13",
+  "retrievalMethod": "Public web search and page extraction returned during this research session. The indexed market extract contained contract details; direct page extraction exposed only the client-rendered shell. No complete origin HTML, market API response, or contract PDF was successfully archived.",
+  "market": {
+    "url": "https://kalshi.com/markets/kxzma",
+    "seriesTicker": "KXZMA",
+    "eventTicker": "KXZMA-27FEBCUST100K",
+    "marketTicker": "KXZMA-27FEBCUST100K-4800",
+    "thresholdLabel": "Above 4800",
+    "metric": "Zoom customers contributing more than USD 100,000 in trailing twelve-month revenue",
+    "fiscalPeriodLabel": "fiscal 2027",
+    "reportingQualifier": "The summary selects the annual number in the company's full-year or Q4 earnings release.",
+    "verificationSourceNamed": "Fiscal.ai",
+    "timingSummary": {
+      "openedLocal": "2026-08-07T15:30:00-04:00",
+      "latestDisplayedCloseLocal": "2027-05-25T01:00:00-04:00",
+      "latestDisplayedCloseUtc": "2027-05-25T05:00:00Z",
+      "allowsEarlierCloseAndExpiration": true,
+      "projectedPayoutDelayMinutes": 30,
+      "warning": "Displayed latest close is not a verified publication deadline, determination instant, or settlement instant. The payout delay is a projection. A separate page countdown mentioning February 24 is not treated as a contractual deadline."
+    },
+    "unverified": [
+      "full rules and exact bound contract parameters",
+      "complete source-agency hierarchy",
+      "applicable incorporated rulebook version",
+      "delayed and missing publication rules",
+      "corrections, review and exceptional payout rules"
+    ]
+  },
+  "zoomReportingLeads": [
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1585521/000158552126000030/zm-20260131.htm",
+      "document": "FY2026 Form 10-K",
+      "reportedPeriodEnd": "2026-01-31",
+      "reportedCustomerCount": "4468",
+      "status": "Read through the prior research tool; original response bytes were not preserved. Re-retrieve before promoting this case to a verified normalization."
+    },
+    {
+      "url": "https://www.sec.gov/Archives/edgar/data/1585521/000158552126000121/zm-20260731.htm",
+      "document": "FY2027 Q2 Form 10-Q",
+      "reportedPeriodEnd": "2026-07-31",
+      "reportedCustomerCount": "4625",
+      "status": "Read through the prior research tool; original response bytes were not preserved. Re-retrieve before promoting this case to a verified normalization."
+    },
+    {
+      "url": "https://investors.zoom.us/node/14596/pdf",
+      "document": "FY2027 Q2 earnings release",
+      "reportedPeriodEnd": "2026-07-31",
+      "reportedCustomerCount": "4625",
+      "status": "Official investor-relations source discovered/read through the prior research tool; direct archival requests returned 403."
+    },
+    {
+      "url": "https://investors.zoom.us/node/14151/pdf",
+      "document": "FY2026 Q4/full-year earnings release",
+      "reportedPeriodEnd": "2026-01-31",
+      "reportedCustomerCount": "4468",
+      "status": "Official investor-relations source discovered/read through the prior research tool; direct archival requests returned 403."
+    }
+  ],
+  "definitionResearch": {
+    "observedMeaning": "The KPI is a count of customers exceeding a USD 100,000 trailing-revenue threshold. The two reviewed SEC periods describe the count within the Enterprise customer discussion; distinct business units and enterprise sales channels matter to customer identity.",
+    "changeAssessment": "No definition change was identified in those two reviewed periods. This is not evidence that the definition never changed or will remain unchanged in the future FY2027 Q4 release.",
+    "targetReportAvailability": "The annual FY2027/Q4 report was not available at the November 2026 research date. Earlier counts are context and must not resolve this market.",
+    "warning": "These paraphrased research notes are not a substitute for preserving and rechecking the original filings. No earlier-period reported value is installed as FY2027 annual evidence."
+  }
+}

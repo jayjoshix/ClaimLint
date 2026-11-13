@@ -1,0 +1,192 @@
+{
+  "kind": "SYNTHETIC_MODEL_BOUNDARY_WITNESS",
+  "isActualReportedEvidence": false,
+  "description": "Invented daily contributions in USD after an assumed $1 settlement multiplier, demonstrating why whole-period source precedence cannot replace per-trade-date fallback. Null means unavailable by the assumed cutoff; zero is reported data.",
+  "sourceOrder": [
+    "primaryNotionalUsd",
+    "secondaryNotionalUsd",
+    "tertiaryNotionalUsd"
+  ],
+  "rows": [
+    {
+      "tradeDate": "2026-11-01",
+      "primaryNotionalUsd": "60000000",
+      "secondaryNotionalUsd": null,
+      "tertiaryNotionalUsd": null
+    },
+    {
+      "tradeDate": "2026-11-02",
+      "primaryNotionalUsd": null,
+      "secondaryNotionalUsd": "50000000",
+      "tertiaryNotionalUsd": null
+    },
+    {
+      "tradeDate": "2026-11-03",
+      "primaryNotionalUsd": "0",
+      "secondaryNotionalUsd": null,
+      "tertiaryNotionalUsd": null
+    },
+    {
+      "tradeDate": "2026-11-04",
+      "primaryNotionalUsd": "0",
+      "secondaryNotionalUsd": null,
+      "tertiaryNotionalUsd": null
+    },
+    {
+      "tradeDate": "2026-11-05",
+      "primaryNotionalUsd": "0",
+      "secondaryNotionalUsd": null,
+      "tertiaryNotionalUsd": null
+    },
+    {
+      "tradeDate": "2026-11-06",
+      "primaryNotionalUsd": "0",
+      "secondaryNotionalUsd": null,
+      "tertiaryNotionalUsd": null
+    },
+    {
+      "tradeDate": "2026-11-07",
+      "primaryNotionalUsd": "0",
+      "secondaryNotionalUsd": null,
+      "tertiaryNotionalUsd": null
+    },
+    {
+      "tradeDate": "2026-11-08",
+      "primaryNotionalUsd": "0",
+      "secondaryNotionalUsd": null,
+      "tertiaryNotionalUsd": null
+    },
+    {
+      "tradeDate": "2026-11-09",
+      "primaryNotionalUsd": "0",
+      "secondaryNotionalUsd": null,
+      "tertiaryNotionalUsd": null
+    },
+    {
+      "tradeDate": "2026-11-10",
+      "primaryNotionalUsd": "0",
+      "secondaryNotionalUsd": null,
+      "tertiaryNotionalUsd": null
+    },
+    {
+      "tradeDate": "2026-11-11",
+      "primaryNotionalUsd": "0",
+      "secondaryNotionalUsd": null,
+      "tertiaryNotionalUsd": null
+    },
+    {
+      "tradeDate": "2026-11-12",
+      "primaryNotionalUsd": "0",
+      "secondaryNotionalUsd": null,
+      "tertiaryNotionalUsd": null
+    },
+    {
+      "tradeDate": "2026-11-13",
+      "primaryNotionalUsd": "0",
+      "secondaryNotionalUsd": null,
+      "tertiaryNotionalUsd": null
+    },
+    {
+      "tradeDate": "2026-11-14",
+      "primaryNotionalUsd": "0",
+      "secondaryNotionalUsd": null,
+      "tertiaryNotionalUsd": null
+    },
+    {
+      "tradeDate": "2026-11-15",
+      "primaryNotionalUsd": "0",
+      "secondaryNotionalUsd": null,
+      "tertiaryNotionalUsd": null
+    },
+    {
+      "tradeDate": "2026-11-16",
+      "primaryNotionalUsd": "0",
+      "secondaryNotionalUsd": null,
+      "tertiaryNotionalUsd": null
+    },
+    {
+      "tradeDate": "2026-11-17",
+      "primaryNotionalUsd": "0",
+      "secondaryNotionalUsd": null,
+      "tertiaryNotionalUsd": null
+    },
+    {
+      "tradeDate": "2026-11-18",
+      "primaryNotionalUsd": "0",
+      "secondaryNotionalUsd": null,
+      "tertiaryNotionalUsd": null
+    },
+    {
+      "tradeDate": "2026-11-19",
+      "primaryNotionalUsd": "0",
+      "secondaryNotionalUsd": null,
+      "tertiaryNotionalUsd": null
+    },
+    {
+      "tradeDate": "2026-11-20",
+      "primaryNotionalUsd": "0",
+      "secondaryNotionalUsd": null,
+      "tertiaryNotionalUsd": null
+    },
+    {
+      "tradeDate": "2026-11-21",
+      "primaryNotionalUsd": "0",
+      "secondaryNotionalUsd": null,
+      "tertiaryNotionalUsd": null
+    },
+    {
+      "tradeDate": "2026-11-22",
+      "primaryNotionalUsd": "0",
+      "secondaryNotionalUsd": null,
+      "tertiaryNotionalUsd": null
+    },
+    {
+      "tradeDate": "2026-11-23",
+      "primaryNotionalUsd": "0",
+      "secondaryNotionalUsd": null,
+      "tertiaryNotionalUsd": null
+    },
+    {
+      "tradeDate": "2026-11-24",
+      "primaryNotionalUsd": "0",
+      "secondaryNotionalUsd": null,
+      "tertiaryNotionalUsd": null
+    },
+    {
+      "tradeDate": "2026-11-25",
+      "primaryNotionalUsd": "0",
+      "secondaryNotionalUsd": null,
+      "tertiaryNotionalUsd": null
+    },
+    {
+      "tradeDate": "2026-11-26",
+      "primaryNotionalUsd": "0",
+      "secondaryNotionalUsd": null,
+      "tertiaryNotionalUsd": null
+    },
+    {
+      "tradeDate": "2026-11-27",
+      "primaryNotionalUsd": "0",
+      "secondaryNotionalUsd": null,
+      "tertiaryNotionalUsd": null
+    },
+    {
+      "tradeDate": "2026-11-28",
+      "primaryNotionalUsd": "0",
+      "secondaryNotionalUsd": null,
+      "tertiaryNotionalUsd": null
+    },
+    {
+      "tradeDate": "2026-11-29",
+      "primaryNotionalUsd": "0",
+      "secondaryNotionalUsd": null,
+      "tertiaryNotionalUsd": null
+    },
+    {
+      "tradeDate": "2026-11-30",
+      "primaryNotionalUsd": "0",
+      "secondaryNotionalUsd": null,
+      "tertiaryNotionalUsd": null
+    }
+  ]
+}

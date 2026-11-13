@@ -1,1 +1,9 @@
 * text=auto eol=lf
+# Preserve bytes in optional local publisher archives; these are ignored by Git.
+examples/real/sources/**/*.pdf -text
+examples/real/sources/**/*.txt -text
+examples/real/sources/**/*.html -text
+examples/real/prophetx-gemini-nov2026-100m/sources/*.pdf -text
+examples/real/prophetx-gemini-nov2026-100m/sources/*.html -text
+examples/real/prophetx-gemini-nov2026-100m/sources/*.txt -text
+examples/real/prophetx-gemini-nov2026-100m/sources/*.yaml -text

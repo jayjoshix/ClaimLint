@@ -1,0 +1,20 @@
+{
+  "kind": "SYNTHETIC_MODEL_BOUNDARY_WITNESSES",
+  "isActualReportedEvidence": false,
+  "isVerifiedRealClaimSpec": false,
+  "asOf": "2026-12-03T22:00:00Z",
+  "scalarClaim": "scalar-claim.json",
+  "cases": [
+    { "file": "above.json", "scalarProjectionStatus": "YES" },
+    { "file": "exact.json", "scalarProjectionStatus": "NO" },
+    { "file": "below.json", "scalarProjectionStatus": "NO" }
+  ],
+  "boundaryWitness": "per-date-fallback.json",
+  "limitations": [
+    "These are invented test values, not Gemini observations or ProphetX determinations.",
+    "The valid scalar claim tests only already computed monthly amounts; it cannot represent the complete contract.",
+    "The expected ET interval is represented conditionally as a half-open envelope; reported trade dates govern the real contract.",
+    "Two following weekdays is an explicit assumption, not a verified governing business-day calendar.",
+    "The missing-data and review policies are intentionally absent; no result of this projection may be called the real void/collateral-return result."
+  ]
+}

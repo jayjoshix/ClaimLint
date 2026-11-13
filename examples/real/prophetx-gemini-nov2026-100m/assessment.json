@@ -1,0 +1,453 @@
+﻿{
+  "artifactKind": "unsupported-real-contract-cli-assessment",
+  "researchOutcome": "C",
+  "fixtureStatus": "UNSUPPORTED_CASE_STUDY",
+  "notARealContractSettlementVerdict": true,
+  "engineVersion": "0.1.1",
+  "claimDigest": "6cbb5df047ca1b12edda6b14a45f8b68e843a3459f3d18ecbb6dd461e934ebc0",
+  "supportAssessment": "support-matrix.json",
+  "interpretation": "INVALID_SPEC and CL001 describe the intentionally incomplete draft, not a ProphetX defect. Zero adversarial cases execute against the real draft. Synthetic scalar projections are explicitly separate and cannot pass the real-contract support gate.",
+  "validation": {
+    "command": "node dist/cli.js validate examples/real/prophetx-gemini-nov2026-100m/claim.draft.json --format json",
+    "args": [
+      "validate",
+      "examples/real/prophetx-gemini-nov2026-100m/claim.draft.json",
+      "--format",
+      "json"
+    ],
+    "exitCode": 2,
+    "output": {
+      "engineVersion": "0.1.1",
+      "status": "INVALID_SPEC",
+      "valid": false,
+      "issues": [
+        {
+          "code": "CL001",
+          "path": "reference.reportingPeriod.end",
+          "message": "Invalid input: expected string, received undefined"
+        },
+        {
+          "code": "CL001",
+          "path": "reference.reportingPeriod.start",
+          "message": "Invalid input: expected string, received undefined"
+        },
+        {
+          "code": "CL001",
+          "path": "timing",
+          "message": "Invalid input: expected object, received undefined"
+        }
+      ]
+    }
+  },
+  "resolutions": [
+    {
+      "command": "node dist/cli.js resolve examples/real/prophetx-gemini-nov2026-100m/claim.draft.json --evidence examples/real/prophetx-gemini-nov2026-100m/witnesses/above.json --as-of 2026-12-03T22:00:00Z --format json",
+      "args": [
+        "resolve",
+        "examples/real/prophetx-gemini-nov2026-100m/claim.draft.json",
+        "--evidence",
+        "examples/real/prophetx-gemini-nov2026-100m/witnesses/above.json",
+        "--as-of",
+        "2026-12-03T22:00:00Z",
+        "--format",
+        "json"
+      ],
+      "exitCode": 2,
+      "output": {
+        "engineVersion": "0.1.1",
+        "status": "INVALID_SPEC",
+        "terminal": false,
+        "reasonCodes": ["SPEC_INVALID"],
+        "evidenceUsed": [],
+        "trace": [
+          {
+            "code": "SPEC_ISSUE",
+            "data": {
+              "code": "CL001",
+              "path": "reference.reportingPeriod.end",
+              "message": "Invalid input: expected string, received undefined"
+            }
+          },
+          {
+            "code": "SPEC_ISSUE",
+            "data": {
+              "code": "CL001",
+              "path": "reference.reportingPeriod.start",
+              "message": "Invalid input: expected string, received undefined"
+            }
+          },
+          {
+            "code": "SPEC_ISSUE",
+            "data": {
+              "code": "CL001",
+              "path": "timing",
+              "message": "Invalid input: expected object, received undefined"
+            }
+          },
+          {
+            "code": "SPEC_INVALID",
+            "data": {}
+          }
+        ]
+      }
+    },
+    {
+      "command": "node dist/cli.js resolve examples/real/prophetx-gemini-nov2026-100m/claim.draft.json --evidence examples/real/prophetx-gemini-nov2026-100m/witnesses/exact.json --as-of 2026-12-03T22:00:00Z --format json",
+      "args": [
+        "resolve",
+        "examples/real/prophetx-gemini-nov2026-100m/claim.draft.json",
+        "--evidence",
+        "examples/real/prophetx-gemini-nov2026-100m/witnesses/exact.json",
+        "--as-of",
+        "2026-12-03T22:00:00Z",
+        "--format",
+        "json"
+      ],
+      "exitCode": 2,
+      "output": {
+        "engineVersion": "0.1.1",
+        "status": "INVALID_SPEC",
+        "terminal": false,
+        "reasonCodes": ["SPEC_INVALID"],
+        "evidenceUsed": [],
+        "trace": [
+          {
+            "code": "SPEC_ISSUE",
+            "data": {
+              "code": "CL001",
+              "path": "reference.reportingPeriod.end",
+              "message": "Invalid input: expected string, received undefined"
+            }
+          },
+          {
+            "code": "SPEC_ISSUE",
+            "data": {
+              "code": "CL001",
+              "path": "reference.reportingPeriod.start",
+              "message": "Invalid input: expected string, received undefined"
+            }
+          },
+          {
+            "code": "SPEC_ISSUE",
+            "data": {
+              "code": "CL001",
+              "path": "timing",
+              "message": "Invalid input: expected object, received undefined"
+            }
+          },
+          {
+            "code": "SPEC_INVALID",
+            "data": {}
+          }
+        ]
+      }
+    },
+    {
+      "command": "node dist/cli.js resolve examples/real/prophetx-gemini-nov2026-100m/claim.draft.json --evidence examples/real/prophetx-gemini-nov2026-100m/witnesses/below.json --as-of 2026-12-03T22:00:00Z --format json",
+      "args": [
+        "resolve",
+        "examples/real/prophetx-gemini-nov2026-100m/claim.draft.json",
+        "--evidence",
+        "examples/real/prophetx-gemini-nov2026-100m/witnesses/below.json",
+        "--as-of",
+        "2026-12-03T22:00:00Z",
+        "--format",
+        "json"
+      ],
+      "exitCode": 2,
+      "output": {
+        "engineVersion": "0.1.1",
+        "status": "INVALID_SPEC",
+        "terminal": false,
+        "reasonCodes": ["SPEC_INVALID"],
+        "evidenceUsed": [],
+        "trace": [
+          {
+            "code": "SPEC_ISSUE",
+            "data": {
+              "code": "CL001",
+              "path": "reference.reportingPeriod.end",
+              "message": "Invalid input: expected string, received undefined"
+            }
+          },
+          {
+            "code": "SPEC_ISSUE",
+            "data": {
+              "code": "CL001",
+              "path": "reference.reportingPeriod.start",
+              "message": "Invalid input: expected string, received undefined"
+            }
+          },
+          {
+            "code": "SPEC_ISSUE",
+            "data": {
+              "code": "CL001",
+              "path": "timing",
+              "message": "Invalid input: expected object, received undefined"
+            }
+          },
+          {
+            "code": "SPEC_INVALID",
+            "data": {}
+          }
+        ]
+      }
+    }
+  ],
+  "check": {
+    "command": "node dist/cli.js check examples/real/prophetx-gemini-nov2026-100m/claim.draft.json --runs 1000 --seed 18472941 --format json",
+    "args": [
+      "check",
+      "examples/real/prophetx-gemini-nov2026-100m/claim.draft.json",
+      "--runs",
+      "1000",
+      "--seed",
+      "18472941",
+      "--format",
+      "json"
+    ],
+    "exitCode": 2,
+    "output": {
+      "engineVersion": "0.1.1",
+      "specDigest": "6cbb5df047ca1b12edda6b14a45f8b68e843a3459f3d18ecbb6dd461e934ebc0",
+      "verdict": "INVALID_SPEC",
+      "validation": {
+        "valid": false,
+        "issues": [
+          {
+            "code": "CL001",
+            "path": "reference.reportingPeriod.end",
+            "message": "Invalid input: expected string, received undefined"
+          },
+          {
+            "code": "CL001",
+            "path": "reference.reportingPeriod.start",
+            "message": "Invalid input: expected string, received undefined"
+          },
+          {
+            "code": "CL001",
+            "path": "timing",
+            "message": "Invalid input: expected object, received undefined"
+          }
+        ]
+      },
+      "namedScenarios": [],
+      "generated": {
+        "requestedRuns": 1000,
+        "executedRuns": 0,
+        "seed": 18472941,
+        "checks": []
+      },
+      "findings": [
+        {
+          "code": "CL001",
+          "severity": "ERROR",
+          "property": "SPEC_VALIDITY",
+          "summary": "Invalid input: expected string, received undefined",
+          "explanation": "Invalid specification at reference.reportingPeriod.end."
+        },
+        {
+          "code": "CL001",
+          "severity": "ERROR",
+          "property": "SPEC_VALIDITY",
+          "summary": "Invalid input: expected string, received undefined",
+          "explanation": "Invalid specification at reference.reportingPeriod.start."
+        },
+        {
+          "code": "CL001",
+          "severity": "ERROR",
+          "property": "SPEC_VALIDITY",
+          "summary": "Invalid input: expected object, received undefined",
+          "explanation": "Invalid specification at timing."
+        }
+      ],
+      "disclaimer": "No counterexample found is not a formal proof of settlement correctness. Results cover only the listed scenarios and generated property cases; REVIEW_REQUIRED routes still require an external process."
+    }
+  },
+  "syntheticScalarProjectionOnly": [
+    {
+      "command": "node dist/cli.js validate examples/real/prophetx-gemini-nov2026-100m/witnesses/scalar-claim.json --format json",
+      "args": [
+        "validate",
+        "examples/real/prophetx-gemini-nov2026-100m/witnesses/scalar-claim.json",
+        "--format",
+        "json"
+      ],
+      "exitCode": 0,
+      "output": {
+        "engineVersion": "0.1.1",
+        "status": "VALID_SPEC",
+        "valid": true,
+        "issues": []
+      }
+    },
+    {
+      "command": "node dist/cli.js resolve examples/real/prophetx-gemini-nov2026-100m/witnesses/scalar-claim.json --evidence examples/real/prophetx-gemini-nov2026-100m/witnesses/above.json --as-of 2026-12-03T22:00:00Z --format json",
+      "args": [
+        "resolve",
+        "examples/real/prophetx-gemini-nov2026-100m/witnesses/scalar-claim.json",
+        "--evidence",
+        "examples/real/prophetx-gemini-nov2026-100m/witnesses/above.json",
+        "--as-of",
+        "2026-12-03T22:00:00Z",
+        "--format",
+        "json"
+      ],
+      "exitCode": 0,
+      "output": {
+        "engineVersion": "0.1.1",
+        "status": "YES",
+        "terminal": true,
+        "reasonCodes": ["CONDITION_EVALUATED"],
+        "evidenceUsed": ["synthetic-primary-above"],
+        "trace": [
+          {
+            "code": "EVIDENCE_CUTOFF",
+            "data": {
+              "cutoff": "2026-12-02T22:00:00Z",
+              "correctionPolicy": "freezeAtDetermination"
+            }
+          },
+          {
+            "code": "SOURCE_SELECTED",
+            "data": {
+              "sourceId": "primary",
+              "priority": 1,
+              "evidenceId": "synthetic-primary-above"
+            }
+          },
+          {
+            "code": "EXACT_COMPARISON",
+            "data": {
+              "value": "100000000.01",
+              "unit": "USD",
+              "comparator": "\u003e",
+              "strike": "100000000",
+              "truth": true
+            }
+          },
+          {
+            "code": "CONDITION_EVALUATED",
+            "data": {}
+          }
+        ],
+        "payout": {
+          "currency": "USD",
+          "amount": "1"
+        }
+      }
+    },
+    {
+      "command": "node dist/cli.js resolve examples/real/prophetx-gemini-nov2026-100m/witnesses/scalar-claim.json --evidence examples/real/prophetx-gemini-nov2026-100m/witnesses/exact.json --as-of 2026-12-03T22:00:00Z --format json",
+      "args": [
+        "resolve",
+        "examples/real/prophetx-gemini-nov2026-100m/witnesses/scalar-claim.json",
+        "--evidence",
+        "examples/real/prophetx-gemini-nov2026-100m/witnesses/exact.json",
+        "--as-of",
+        "2026-12-03T22:00:00Z",
+        "--format",
+        "json"
+      ],
+      "exitCode": 0,
+      "output": {
+        "engineVersion": "0.1.1",
+        "status": "NO",
+        "terminal": true,
+        "reasonCodes": ["CONDITION_EVALUATED"],
+        "evidenceUsed": ["synthetic-primary-exact"],
+        "trace": [
+          {
+            "code": "EVIDENCE_CUTOFF",
+            "data": {
+              "cutoff": "2026-12-02T22:00:00Z",
+              "correctionPolicy": "freezeAtDetermination"
+            }
+          },
+          {
+            "code": "SOURCE_SELECTED",
+            "data": {
+              "sourceId": "primary",
+              "priority": 1,
+              "evidenceId": "synthetic-primary-exact"
+            }
+          },
+          {
+            "code": "EXACT_COMPARISON",
+            "data": {
+              "value": "100000000",
+              "unit": "USD",
+              "comparator": "\u003e",
+              "strike": "100000000",
+              "truth": false
+            }
+          },
+          {
+            "code": "CONDITION_EVALUATED",
+            "data": {}
+          }
+        ],
+        "payout": {
+          "currency": "USD",
+          "amount": "0"
+        }
+      }
+    },
+    {
+      "command": "node dist/cli.js resolve examples/real/prophetx-gemini-nov2026-100m/witnesses/scalar-claim.json --evidence examples/real/prophetx-gemini-nov2026-100m/witnesses/below.json --as-of 2026-12-03T22:00:00Z --format json",
+      "args": [
+        "resolve",
+        "examples/real/prophetx-gemini-nov2026-100m/witnesses/scalar-claim.json",
+        "--evidence",
+        "examples/real/prophetx-gemini-nov2026-100m/witnesses/below.json",
+        "--as-of",
+        "2026-12-03T22:00:00Z",
+        "--format",
+        "json"
+      ],
+      "exitCode": 0,
+      "output": {
+        "engineVersion": "0.1.1",
+        "status": "NO",
+        "terminal": true,
+        "reasonCodes": ["CONDITION_EVALUATED"],
+        "evidenceUsed": ["synthetic-primary-below"],
+        "trace": [
+          {
+            "code": "EVIDENCE_CUTOFF",
+            "data": {
+              "cutoff": "2026-12-02T22:00:00Z",
+              "correctionPolicy": "freezeAtDetermination"
+            }
+          },
+          {
+            "code": "SOURCE_SELECTED",
+            "data": {
+              "sourceId": "primary",
+              "priority": 1,
+              "evidenceId": "synthetic-primary-below"
+            }
+          },
+          {
+            "code": "EXACT_COMPARISON",
+            "data": {
+              "value": "99999999.99",
+              "unit": "USD",
+              "comparator": "\u003e",
+              "strike": "100000000",
+              "truth": false
+            }
+          },
+          {
+            "code": "CONDITION_EVALUATED",
+            "data": {}
+          }
+        ],
+        "payout": {
+          "currency": "USD",
+          "amount": "0"
+        }
+      }
+    }
+  ]
+}

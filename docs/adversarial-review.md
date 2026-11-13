@@ -2,7 +2,13 @@
 
 Reviewed baseline: `084a003` (engine `0.1.0`). Corrections use engine `0.1.1`;
 generator changes intentionally invalidate old seed/path replay assumptions.
-This is a bounded engineering review, not a claim of exhaustive coverage.
+This records an adversarial engineering pass on the implementation, not an
+external third-party audit or certification. Coverage is bounded.
+
+- [Reproduced defects](#reproduced-defects)
+- [What each generated property checks](#what-each-generated-property-actually-checks)
+- [Areas where no arithmetic defect was found](#areas-where-no-arithmetic-defect-was-found)
+- [Scope and documentation conclusions](#scope-and-documentation-conclusions)
 
 The model, runtime validation, resolver, arithmetic, time handling, evidence
 selection, scenario catalogue, generators, property assertions, reporting,
@@ -171,8 +177,8 @@ reach comparison, and existing cycle/priority validation remained useful.
 
 ## Scope and documentation conclusions
 
-The README already denied formal proof, legal correctness, compliance, and
-affiliation. Its claim that both demos had the same economic behavior needed
+The README at the reviewed baseline already denied formal proof, legal
+correctness, compliance and affiliation. Its claim that both demos had the same economic behavior needed
 qualification: hardened rounding changes `31.04 > 31` from YES to NO. That choice
 is now explicit. Correction cutoffs do not override publication admissibility;
 `latestUntilSettlement` chiefly admits older publications retrieved later under

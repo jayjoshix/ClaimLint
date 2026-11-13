@@ -1,0 +1,117 @@
+[
+  {
+    "file": "zoom-fy2026-10k.html",
+    "url": "https://www.sec.gov/Archives/edgar/data/1585521/000158552126000030/zm-20260131.htm",
+    "retrievedAt": "2026-11-13T02:28:06.337773+00:00",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "file": "zoom-fy2027-q2-10q.html",
+    "url": "https://www.sec.gov/Archives/edgar/data/1585521/000158552126000121/zm-20260731.htm",
+    "retrievedAt": "2026-11-13T02:28:06.411651+00:00",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "file": "zoom-fy2027-q2-release.pdf",
+    "url": "https://investors.zoom.us/node/14596/pdf",
+    "retrievedAt": "2026-11-13T02:28:06.462755+00:00",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "file": "zoom-fy2026-q4-release.pdf",
+    "url": "https://investors.zoom.us/node/14151/pdf",
+    "retrievedAt": "2026-11-13T02:28:06.558718+00:00",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "file": "zoom-fy2026-annual.pdf",
+    "url": "https://investors.zoom.us/static-files/810de4a4-79cc-4a62-9c5e-c6b8b8c4765d",
+    "retrievedAt": "2026-11-13T02:29:38.994634+00:00",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "file": "zoom-fy2027-q2-release.pdf",
+    "url": "https://zoom.gcs-web.com/node/14596/pdf",
+    "retrievedAt": "2026-11-13T02:29:39.244587+00:00",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "file": "zoom-fy2026-q4-release-news.html",
+    "url": "https://news.zoom.com/zoom-communications-reports-fourth-quarter-and-fiscal-year-2026-financial-results/",
+    "retrievedAt": "2026-11-13T02:29:39.283010+00:00",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "file": "zoom-fy2026-annual-sec.pdf",
+    "url": "https://www.sec.gov/Archives/edgar/data/1585521/000114036126018249/ef20072035_ars.pdf",
+    "retrievedAt": "2026-11-13T02:29:39.938648+00:00",
+    "status": 200,
+    "contentType": "application/pdf",
+    "bytes": 2519336,
+    "sha256": "e14227d72689bda09acea4549eac09f3dcb7477da402422d672893b08213036f",
+    "finalUrl": "https://www.sec.gov/Archives/edgar/data/1585521/000114036126018249/ef20072035_ars.pdf",
+    "documentTitle": "Zoom FY2026 Annual Report containing Form 10-K",
+    "relevantSections": [
+      "PDF page 58 (printed 54), Key Business Metrics",
+      "PDF page 79 (printed 75), Note 1 / Fiscal Year"
+    ],
+    "preservationKind": "original-response-body"
+  },
+  {
+    "file": "zoom-fy2027-q2-10q.xml",
+    "url": "https://www.sec.gov/Archives/edgar/data/1585521/000158552126000121/zm-20260731_htm.xml",
+    "retrievedAt": "2026-11-13T02:30:55.972068+00:00",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "file": "zoom-fy2027-q2-10q.txt",
+    "url": "https://www.sec.gov/Archives/edgar/data/1585521/000158552126000121/0001585521-26-000121.txt",
+    "retrievedAt": "2026-11-13T02:30:56.077096+00:00",
+    "status": 200,
+    "contentType": "text/plain",
+    "bytes": 8260014,
+    "sha256": "de96b6c85ccf22908fb77015be36ce07498c2f3754706cb53a6ab31fe30f0f1e",
+    "finalUrl": "https://www.sec.gov/Archives/edgar/data/1585521/000158552126000121/0001585521-26-000121.txt",
+    "documentTitle": "Zoom FY2027 Q2 Form 10-Q complete SEC filing",
+    "primaryDocument": "zm-20260731.htm",
+    "relevantSections": [
+      "Note 1 / Fiscal Year",
+      "MD&A / Key Business Metrics / Large Enterprise Customers"
+    ],
+    "preservationKind": "original-response-body"
+  },
+  {
+    "file": "zoom-fy2027-q2-release.html",
+    "url": "https://www.sec.gov/Archives/edgar/data/1585521/000158552126000119/zm-20260731ex991.htm",
+    "retrievedAt": "2026-11-13T02:30:57.610910+00:00",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "file": "zoom-fy2027-q2-release-filing.txt",
+    "url": "https://www.sec.gov/Archives/edgar/data/1585521/000158552126000119/0001585521-26-000119.txt",
+    "retrievedAt": "2026-11-13T02:31:29.322039+00:00",
+    "status": 200,
+    "contentType": "text/plain",
+    "bytes": 472703,
+    "sha256": "d5f934255fc3cd460e70209370f96c9461efd5fb10c0b181f2e320c8213ebde1",
+    "finalUrl": "https://www.sec.gov/Archives/edgar/data/1585521/000158552126000119/0001585521-26-000119.txt",
+    "documentTitle": "Zoom FY2027 Q2 results, 8-K Exhibit 99.1",
+    "primaryDocument": "zm-20260731ex991.htm",
+    "relevantSections": ["Customer Metrics", "Customer Metrics definitions"],
+    "preservationKind": "original-response-body"
+  },
+  {
+    "file": "zoom-fy2026-q4-release-filing.txt",
+    "url": "https://www.sec.gov/Archives/edgar/data/1585521/000158552126000026/0001585521-26-000026.txt",
+    "retrievedAt": "2026-11-13T02:31:30.811174+00:00",
+    "status": 200,
+    "contentType": "text/plain",
+    "bytes": 478308,
+    "sha256": "287fa05bf7921967c895893e7feb846bc37a91c1b4e60817539dc5c873423156",
+    "finalUrl": "https://www.sec.gov/Archives/edgar/data/1585521/000158552126000026/0001585521-26-000026.txt",
+    "documentTitle": "Zoom FY2026 Q4 and full-year results, 8-K Exhibit 99.1",
+    "primaryDocument": "zm-20260225ex991.htm",
+    "relevantSections": ["Customer Metrics", "Customer Metrics definitions"],
+    "preservationKind": "original-response-body"
+  }
+]

@@ -5,28 +5,6 @@ rules, affiliations, endorsements, or compliance claims. ClaimLint implements
 neither CDM nor ACTUS and does not reproduce an exchange's adjudication process.
 The ordinary test suite uses synthetic evidence and needs no network access.
 
-## Formation Markets
-
-Formation's public memo describes an ontology relating reported operating
-numbers, institutional exposures, instruments, dealers, and holders. Its
-structuring workflow distinguishes language-model reasoning, typed decision
-models, pricing tools, and specialist approval. Company operating outcomes are
-presented as its first market. These are descriptions of Formation's plans and
-software under development, not a published settlement-engine specification.
-
-ClaimLint's narrower question is whether an already structured binary claim has
-defined behavior for adversarial evidence states. It has no ontology, pricing,
-placement, trading, or model-based decision component. In particular, the phrase
-"typed decision models" in the memo does **not** establish that Formation uses
-ClaimLint's deterministic rules or shares its semantics. The useful engineering
-inference is to keep interpretation and contract drafting outside the resolver.
-
-Source: Formation Markets, [public memo](https://formation.markets/memo.html?view=memo),
-sections "How we do it", "One number, many balance sheets", and "The ontology".
-Read the publisher's HTML and the linked `MemoDocument-8Nb7OPFw.js` content on the
-research date because the page renders its memo client-side. No claim about
-Formation's non-public architecture is made.
-
 ## CFTC event-contract material
 
 The Division of Market Oversight's March 12, 2026 advisory discusses the nature

@@ -2,6 +2,14 @@ node_modules/
 dist/
 coverage/
 .cache/
+.private/
 *.tsbuildinfo
 .env
 *.log
+
+# Publisher originals remain local; public provenance retains URLs and hashes.
+examples/real/sources/**/*
+!examples/real/sources/**/
+!examples/real/sources/**/*.json
+examples/real/prophetx-gemini-nov2026-100m/sources/*
+!examples/real/prophetx-gemini-nov2026-100m/sources/*-manifest.json

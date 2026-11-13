@@ -1,0 +1,56 @@
+{
+  "preparedOn": "2026-11-13",
+  "recordScope": "Initial blocked research pass; superseded by resumed-source-status.json for current archival state.",
+  "rawAuthoritativeBodiesArchivedAtThisPass": false,
+  "normalizedDiscoveryRecord": "discovery-extract.json",
+  "warning": "No local extract or its checksum is represented as the hash of an original publisher document. Failed retrieval does not mean a document or contractual rule does not exist.",
+  "attempts": [
+    {
+      "date": "2026-11-12",
+      "source": "Kalshi market public discovery and page extractor",
+      "url": "https://kalshi.com/markets/kxzma",
+      "result": "Indexed market details read; direct page extraction exposed client-rendered shell. Normalized research extract preserved, original bytes not archived."
+    },
+    {
+      "date": "2026-11-12",
+      "source": "Kalshi market API",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/markets/KXZMA-27FEBCUST100K-4800",
+      "result": "Web retrieval inaccessible; direct default-sandbox request refused. No body obtained."
+    },
+    {
+      "date": "2026-11-12",
+      "source": "Kalshi series API",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/series/KXZMA",
+      "result": "Web retrieval inaccessible; direct default-sandbox request refused. Full-terms link not verified."
+    },
+    {
+      "date": "2026-11-12",
+      "source": "Kalshi event API",
+      "url": "https://api.elections.kalshi.com/trade-api/v2/events/KXZMA-27FEBCUST100K",
+      "result": "Direct default-sandbox request refused. No body obtained."
+    },
+    {
+      "date": "2026-11-12",
+      "source": "Kalshi rulebook hub",
+      "url": "https://kalshi.com/regulatory/rulebook",
+      "result": "Timeout/network failure. Guessed v1.29 PDF URL returned 404; no document from that guess used as authority."
+    },
+    {
+      "date": "2026-11-12",
+      "source": "Zoom SEC/IR original-byte archival requests",
+      "detailsFile": "zoom-source-retrieval.json",
+      "result": "HTTP 403 for attempted originals. Prior research-tool reads are summarized separately; raw sources must be reacquired."
+    },
+    {
+      "date": "2026-11-13",
+      "source": "Public Kalshi market/series/event/page download batch",
+      "result": "Client authentication prevented the download batch from executing. No original response body was obtained; this records a research-environment limitation, not a source availability claim."
+    },
+    {
+      "date": "2026-11-13",
+      "source": "Public browsing retry after user acknowledgement",
+      "url": "https://kalshi.com/markets/kxzma",
+      "result": "Client authentication failed during the retry; source retrieval was not completed."
+    }
+  ]
+}

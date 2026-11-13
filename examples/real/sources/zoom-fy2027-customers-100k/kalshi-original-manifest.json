@@ -1,0 +1,32 @@
+[
+  {
+    "file": "kalshi-series-api-current.json",
+    "url": "https://api.kalshi.com/trade-api/v2/series/KXZMA",
+    "retrievedAt": "2026-11-13T02:30:41.359301+00:00",
+    "error": "<urlopen error timed out>"
+  },
+  {
+    "file": "kalshi-series-api-trading.json",
+    "url": "https://trading-api.kalshi.com/trade-api/v2/series/KXZMA",
+    "retrievedAt": "2026-11-13T02:30:41.359301+00:00",
+    "error": "<urlopen error timed out>"
+  },
+  {
+    "file": "kalshi-series-api-external.json",
+    "url": "https://external-api.kalshi.com/trade-api/v2/series/KXZMA",
+    "retrievedAt": "2026-11-13T02:30:41.360299+00:00",
+    "error": "<urlopen error timed out>"
+  },
+  {
+    "file": "kalshi-series-api-elections-query.json",
+    "url": "https://api.elections.kalshi.com/trade-api/v2/series/KXZMA?include_volume=false",
+    "retrievedAt": "2026-11-13T02:31:05.413593+00:00",
+    "error": "<urlopen error timed out>"
+  },
+  {
+    "file": "kalshi-market-page-www.html",
+    "url": "https://www.kalshi.com/markets/kxzma",
+    "retrievedAt": "2026-11-13T02:31:05.414598+00:00",
+    "error": "<urlopen error timed out>"
+  }
+]
